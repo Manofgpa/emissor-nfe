@@ -1,0 +1,22 @@
+{
+  "name": "emissor-nfe",
+  "version": "1.0.0",
+  "description": "Emissor de nota fiscal",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/felipe.mano/emissor-nfe.git"
+  },
+  "keywords": [
+    "NFe"
+  ],
+  "author": "Felipe Mano",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/felipe.mano/emissor-nfe/issues"
+  },
+  "homepage": "https://gitlab.com/felipe.mano/emissor-nfe#readme"
+}
