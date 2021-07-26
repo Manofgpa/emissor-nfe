@@ -21,7 +21,53 @@
     <%- include('./include/header') %>
 
     <main>
-      
+      <div>
+        <h2 class="text-left">Informacoes do Cliente</h2>
+        <hr />
+      </div>
+      <div class="row ro--no-margin">
+        <div class="col-md-3">
+          <!-- nome completo -->
+          <label class="field-label"
+            >Nome Completo<span class="field-required">*</span></label
+          >
+          <div class="autocomplete-wrapper" style="display: inline-block">
+            <input
+              type="text"
+              name="cliente_nome_completo"
+              class="form-control"
+              autocomplete="off"
+              value=""
+            />
+          </div>
+        </div>
+        <div class="col-md-3">
+          <!-- CPF -->
+          <label class="field-label"
+            >CPF<span class="field-required">*</span></label
+          ><input
+            type="text"
+            name="cliente_cpf"
+            placeholder="___.___.___-__"
+            value=""
+          />
+        </div>
+        <!-- UF -->
+        <div class="col-md-3">
+          <label class="field-label"
+            >Estado <span class="field-required">*</span></label
+          ><select name="cliente_uf" class="form-control">
+            <% states.forEach(states => { %>
+            <option value="<%= states.uf %>"><%= states.name %></option>
+            <% }) %>
+          </select>
+        </div>
+
+        <div class="col-md-3">
+          <label class="field-label">Inscrição estadual (I.E) </label
+          ><input type="text" name="cliente_ie" value="" />
+        </div>
+      </div>
     </main>
 
     <%- include('./include/footer') %>
