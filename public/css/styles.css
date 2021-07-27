@@ -1,0 +1,29 @@
+
+/* Pagina Emissor */
+
+
+
+  input[name="cliente_endereco"] {
+    width: 80%;
+  }
+
+  .col-md {
+    margin-bottom: 10px;
+  }
+
+
+
+
+
+
+
+  footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    padding: 80px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+  }
