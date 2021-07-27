@@ -4,15 +4,25 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/styles.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+
     <style>
       #aemissor {
         color: #fff;
+      }
+
+      input[name="cliente_endereco"] {
+        width: 80%;
+      }
+
+      .col-md {
+        margin-bottom: 10px;
       }
     </style>
     <title>Emissor de NFe - Emissor</title>
@@ -21,52 +31,120 @@
     <%- include('./include/header') %>
 
     <main>
-      <div>
-        <h2 class="text-left">Informacoes do Cliente</h2>
-        <hr />
-      </div>
-      <div class="row ro--no-margin">
-        <div class="col-md-3">
-          <!-- nome completo -->
-          <label class="field-label"
-            >Nome Completo<span class="field-required">*</span></label
-          >
-          <div class="autocomplete-wrapper" style="display: inline-block">
-            <input
+      <div class="cliente">
+        <div>
+          <h2 class="text-left">Informações do Cliente</h2>
+          <hr />
+        </div>
+        <div class="row" style="">
+          <div class="col-md-3">
+            <!-- nome completo -->
+            <label class="field-label"
+              >Nome Completo<span class="field-required">*</span></label
+            >
+            <div class="autocomplete-wrapper" style="display: inline-block">
+              <input
+                type="text"
+                name="cliente_nome_completo"
+                class="form-control"
+                autocomplete="off"
+                value=""
+              />
+            </div>
+          </div>
+          <div class="col-md-2">
+            <!-- CPF -->
+            <label class="field-label"
+              >CPF<span class="field-required">*</span></label
+            ><input
               type="text"
-              name="cliente_nome_completo"
-              class="form-control"
-              autocomplete="off"
+              name="cliente_cpf"
+              placeholder="___.___.___-__"
               value=""
             />
           </div>
-        </div>
-        <div class="col-md-3">
-          <!-- CPF -->
-          <label class="field-label"
-            >CPF<span class="field-required">*</span></label
-          ><input
-            type="text"
-            name="cliente_cpf"
-            placeholder="___.___.___-__"
-            value=""
-          />
-        </div>
-        <!-- UF -->
-        <div class="col-md-3">
-          <label class="field-label"
-            >Estado <span class="field-required">*</span></label
-          ><select name="cliente_uf" class="form-control">
-            <% states.forEach(states => { %>
-            <option value="<%= states.uf %>"><%= states.name %></option>
-            <% }) %>
-          </select>
-        </div>
+          <div class="col-md-2">
+            <!-- CEP -->
+            <label class="field-label"
+              >CEP<span class="field-required">*</span></label
+            ><input type="text" name="cliente_cep" value="" />
+          </div>
+          <div class="col-md-5">
+            <!-- Endereço -->
+            <label class="field-label"
+              >Endereço<span class="field-required">*</span></label
+            ><input type="text" name="cliente_endereco" value="" />
+          </div>
+          <div class="col-md-2">
+            <!-- Numero -->
+            <label class="field-label"
+              >Número<span class="field-required">*</span></label
+            ><input type="number" name="cliente_numero" value="" />
+          </div>
+          <div class="col-md-4">
+            <!-- Complemento -->
+            <label class="field-label"
+              >Complemento<span class="field-required">*</span></label
+            ><input type="text" name="cliente_complemento" value="" />
+          </div>
+          <div class="col-md-3">
+            <!-- Bairro -->
+            <label class="field-label"
+              >Bairro<span class="field-required">*</span></label
+            ><input type="text" name="cliente_endereco" value="" />
+          </div>
+          <div class="col-md-3">
+            <!-- Cidade -->
+            <label class="field-label"
+              >Cidade<span class="field-required">*</span></label
+            ><input type="text" name="cliente_cidade" value="" />
+          </div>
+          <div class="col-md-3">
+            <!-- UF -->
+            <label class="field-label"
+              >Estado <span class="field-required">*</span></label
+            ><select name="cliente_uf" class="form-control">
+              <% states.forEach(states => { %>
+              <option value="<%= states.uf %>"><%= states.name %></option>
+              <% }) %>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <label class="field-label">Consumidor Final (opcional) </label
+            ><select name="consumidor_final" class="form-control">
+              <option value="">---</option>
+              <option value="0">Não</option>
+              <option value="1">Sim</option>
+            </select>
+          </div>
+          <div class="col-md-5">
+            <!-- E-mail -->
+            <label class="field-label"
+              >E-mail<span class="field-required">*</span></label
+            ><input type="email" name="cliente_email" value="" />
+          </div>
+          <div class="col-md-2">
+            <label class="field-label">Telefone</label
+            ><input
+              type="text"
+              name="cliente_telefone"
+              placeholder="(__) ____-____"
+              value=""
+            />
+          </div>
 
-        <div class="col-md-3">
-          <label class="field-label">Inscrição estadual (I.E) </label
-          ><input type="text" name="cliente_ie" value="" />
+          <!-- <div class="col-md-3">
+            <label class="field-label">Inscrição estadual (I.E) </label
+            ><input type="text" name="cliente_ie" value="" />
+          </div> -->
         </div>
+      </div>
+      <br />
+      <hr />
+      <div class="produtos">
+        <h2>Informações dos produtos</h2>
+        <hr />
+        <div class="prod"></div>
       </div>
     </main>
 

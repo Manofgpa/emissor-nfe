@@ -9,10 +9,10 @@ const __dirname = Path.resolve()
 
 app.use(Express.urlencoded({ extended: false }))
 
-
+app.use(Express.static(Path.join(__dirname, '/public')))
 app.set('view engine', 'ejs')
 app.set('views', Path.join(__dirname, 'views'))
-app.use(Express.static('public'))
+
 
 app.get('/', async (req, res) => {
     res.render('home')
