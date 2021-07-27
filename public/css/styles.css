@@ -1,15 +1,24 @@
-
 /* Pagina Emissor */
 
+input[name="cliente_nome_completo"] {
+    width: 350px;
+}
+/* input[name="cliente_cpf"] {
+    padding: 5px;
+}
 
-
-  input[name="cliente_endereco"] {
+input[name="cliente_endereco"] {
     width: 80%;
-  }
+}
 
-  .col-md {
+
+input[name="cliente_endereco"] {
+    width: 80%;
+} */
+
+.col-md {
     margin-bottom: 10px;
-  }
+}
 
 
 
@@ -17,13 +26,13 @@
 
 
 
-  footer {
+footer {
     position: fixed;
     left: 0;
     bottom: 0;
-    padding: 80px;
+    
     width: 100%;
     background-color: black;
     color: white;
     text-align: center;
-  }
+}

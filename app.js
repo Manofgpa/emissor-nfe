@@ -1,6 +1,8 @@
 import Express from "express"
 import Path from "path"
 import states from "./views/loaders/states.js"
+import modalidades from "./views/loaders/modalidades.js"
+import fretes from "./views/loaders/fretes.js"
 
 
 const app = Express()
@@ -24,7 +26,11 @@ app.get('/about', async (req, res) => {
 
 
 app.get('/emissor', async (req, res) => {
-    res.render('generator', { states })
+    res.render('generator', { states, modalidades, fretes })
+})
+
+app.get('/ejs', async (req, res) => {
+    res.render('ex')
 })
 
 app.listen(port, () => {
