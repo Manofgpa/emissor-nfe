@@ -3,6 +3,7 @@
 input[name="cliente_nome_completo"] {
     width: 350px;
 }
+
 /* input[name="cliente_cpf"] {
     padding: 5px;
 }
@@ -21,16 +22,11 @@ input[name="cliente_endereco"] {
 }
 
 
-
-
-
-
-
 footer {
     position: fixed;
     left: 0;
     bottom: 0;
-    
+
     width: 100%;
     background-color: black;
     color: white;
