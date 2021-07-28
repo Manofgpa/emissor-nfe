@@ -65,65 +65,6 @@ app.post("/nfe", async (req, res, next) => {
 
 })
 
-app.get('/nfteste', (req, res) => {
-    res.render('pages/nfteste')
-})
-
-app.get('/teste', (req, res) => {
-    const obj = { ...res.body }
-    const html = fs.readFileSync('./views/pages/nfteste.ejs', 'utf-8')
-    const nfe = ejs.render(html, obj)
-    let options = {
-        "height": "11.25in",
-        "width": "8.5in",
-        "header": {
-            "height": "20mm"
-        },
-        "footer": {
-            "height": "20mm",
-        }
-    }
-
-    pdf.create(nfe, options).toBuffer((err, data) => {
-        if (err) {
-            res.send(err)
-        } else {
-            res.contentType('application/pdf').send(data)
-        }
-    })
-})
-
-
-// ejs.renderFile(Path.join(__dirname, './views/', "nfe.ejs"), (err, data) => {
-//     if (err) {
-//         res.send(err);
-//     } else {
-//         let options = {
-//             "height": "11.25in",
-//             "width": "8.5in",
-//             "header": {
-//                 "height": "20mm"
-//             },
-//             "footer": {
-//                 "height": "20mm",
-//             },
-//         }
-//         pdf.create(data, options).toFile("danfe.pdf", function (err, data) {
-//             if (err) {
-//                 res.send(err);
-//             } else {
-//                 res.send("Nota emitida com sucesso");
-//             }
-//         })
-//     }
-// })
-
-
-
-
-
-
-
 app.listen(port, () => {
     console.log("Servidor rodando na porta", port)
 })
