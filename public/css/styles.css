@@ -25,6 +25,11 @@
     background-color: blanchedalmond;
 }
 
+#produtos_total_nota {
+    background-color: black;
+    color: white;
+}
+
 .botao {
     padding: 5px;
     margin-left: 10px;

@@ -12,7 +12,7 @@
   </head>
   <body>
     <%- include('../include/header') %>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <main>
       <form action="/nfe" method="post" id="mainform">
       <div id="emissor" class="row">
@@ -22,6 +22,18 @@
             <hr />
           </div>
           <fieldset class="form-group">
+
+            <div style="text-align: center;">
+              <input style="padding: 10px;"
+                type="date"
+                id="data"
+                value="date"
+                name="data"
+                checked
+              />
+              <label for="pf">Data</label>
+            </div>
+
             <div>
               <input
                 type="radio"
@@ -32,6 +44,7 @@
               />
               <label for="pf">Pessoa Física</label>
             </div>
+
 
             <div>
               <input type="radio" id="pj" value="pj" name="tipo_cliente" />
@@ -203,20 +216,23 @@
                   <input type="text" placeholder="UN" name="produtos_unidade" />
                 </td>
                 <td>
-                  <input type="number" placeholder="0" name="produtos_quantidade"/>
+                  <input type="number" oninput="updateSubTotal()" placeholder="0" name="produtos_quantidade" maxlength="10"/>
                 </td>
                 <td>
                   <span>R$</span>
-                  <input type="number" onchange="updateTotal()" name="produtos_preco" />
+                  <input type="number" oninput="updateSubTotal()" name="produtos_preco" placeholder="R$" step=".01"/>
                 </td>
                 <td>
                   <span>R$</span>
-                  <input type="number" name="produtos_total"/>
+                  <input type="number" maxlength="10" name="produtos_total" disabled value="0" />
                 </td>
               </tr>
               <tfoot>
                 <input type="button"  id="addproduct" class="botao" onclick="addProduct('ptbody')"value="Adicionar Produto" ></input>
                 <input type="button" id="removeproduct" class="botao" onclick="removeProduct('ptbody')" value="Remover Produto"></input>
+                <input type="button" id="update_total" class="botao" onclick="updateTotal()" value="Atualizar Valor Total"></input>
+                <input type="number" id="produtos_total_nota" class="botao" disabled value="0,00" style="margin-left: 25em;">
+              
               </tfoot>
             </tbody>
           </table>
