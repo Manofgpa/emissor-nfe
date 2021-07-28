@@ -1,24 +1,17 @@
 /* Pagina Emissor */
 
-input[name="cliente_nome_completo"] {
-    width: 350px;
-}
-
-/* input[name="cliente_cpf"] {
-    padding: 5px;
-}
-
-input[name="cliente_endereco"] {
-    width: 80%;
-}
-
-
-input[name="cliente_endereco"] {
-    width: 80%;
-} */
 
 .col-md {
     margin-bottom: 10px;
+}
+
+#emissor {
+    width: 80%;
+    margin: 0px auto;
+    border: 5px solid black;
+    padding: 10px 10px;
+    margin-top: 10px;
+    
 }
 
 
