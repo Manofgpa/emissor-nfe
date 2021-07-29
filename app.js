@@ -1,4 +1,4 @@
-import Express, { application } from "express"
+import Express from "express"
 import Path from "path"
 import states from "./views/loaders/states.js"
 import modalidades from "./views/loaders/modalidades.js"
@@ -11,6 +11,8 @@ import fs from 'fs'
 
 const app = Express()
 const port = 5000
+
+
 const __dirname = Path.resolve()
 
 app.use(Express.urlencoded({ extended: false }))
