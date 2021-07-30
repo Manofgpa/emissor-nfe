@@ -8,11 +8,51 @@
       }
     </style>
     <title>Emissor de NFe - Sobre</title>
+    <script src="./js/github.js"></script>
   </head>
   <body>
     <%- include('../include/header') %>
 
-    <main></main>
+    <main id="github">
+      <div>
+        <img
+          src="https://www.kindpng.com/picc/m/128-1280187_github-logo-png-github-transparent-png.png"
+          alt=""
+          width="600px"
+        />
+      </div>
+      <div>
+        <div>
+          <span style="color: red" id="span"></span>
+        </div>
+        <div>
+          <h2>Favor informe seu usuario do Github</h2>
+        </div>
+        <div>
+          <input type="text" id="user" autocomplete="off" autofocus />
+          <button id="pesquisar">Pesquisar</button>
+        </div>
+        <div>
+          <h2 style="padding: 10px" id="name">Felipe Mano</h2>
+        </div>
+        <div class="data">
+          <div class="image">
+            <img src="" id="foto" width="300px" />
+          </div>
+          <div class="rep">
+            <div>
+              <h2>Repositórios</h2>
+              <h2 style="text-align: center" id="repdata"></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div id="dados">
+        <h2>Repositórios</h2>
+        <ul id="rep"></ul>
+      </div>
+    </main>
 
     <%- include('../include/footer') %>
   </body>

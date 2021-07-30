@@ -1,5 +1,59 @@
-/* Pagina Emissor */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
+* {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Pagina Github */
+#github {
+    margin: 0 auto;
+    width: 50%;
+    margin-top: 20px;
+}
+
+#github img {
+    margin: 20px 0;
+}
+
+#github h2 {
+    margin-bottom: 15px;
+}
+
+#name {
+    display: none;
+}
+
+.image {
+    margin: 15px 0px;
+}
+
+.data {
+    display: flex;
+}
+
+.rep {
+    /* display: flex; */
+    display: none;
+    padding: 10px;
+}
+
+.profiledata h2 {
+    margin: 10px 20px;
+}
+
+#dados {
+    display: none;
+    margin: 20px 20px;
+}
+
+#dados h2 {
+    padding-bottom: 15px;
+}
+
+/* Pagina Emissor */
 
 .col-md {
     margin-bottom: 10px;
