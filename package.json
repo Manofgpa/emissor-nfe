@@ -21,6 +21,7 @@
   },
   "homepage": "https://gitlab.com/felipe.mano/emissor-nfe#readme",
   "dependencies": {
+    "chromium": "^3.0.2",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "html-pdf": "^3.0.1",

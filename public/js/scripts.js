@@ -10,10 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
         tbody.appendChild(node)
     })
 
-
     // Remove last product
     document.getElementById('removeproduct').addEventListener('click', () => tbody.deleteRow(1))
-
 
     // Update total price
     document.querySelector('#update_total').addEventListener('click', () => {
@@ -25,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     })
 })
-
 
 // Update subtotal products
 const updateSubTotal = () => {

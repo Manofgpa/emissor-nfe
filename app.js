@@ -1,25 +1,27 @@
-import Express from "express"
 import Path from "path"
+import Express from "express"
 import states from "./views/loaders/states.js"
 import modalidades from "./views/loaders/modalidades.js"
 import fretes from "./views/loaders/fretes.js"
+import paymentMethods from './views/loaders/meioPagamentos.js'
+import formaPagamentos from './views/loaders/formaPagamentos.js'
 import pdf from "html-pdf"
-import ejs, { renderFile } from 'ejs'
-import Joi from "joi"
+import ejs from 'ejs'
 import fs from 'fs'
+import routes from './routes/routes.js'
+import Joi from "joi"
 
 
 const app = Express()
 const port = 5000
-
 const __dirname = Path.resolve()
 
-app.use(Express.urlencoded({ extended: true }))
-app.use(Express.static(Path.join(__dirname, '/public')))
-
+routes(app)
 
 app.set('view engine', 'ejs')
 app.set('views', Path.join(__dirname, 'views'))
+app.use(Express.static(Path.join(__dirname, '/public')))
+app.use(Express.urlencoded({ extended: true }))
 
 app.get('/', async (req, res) => {
     res.render('pages/home')
@@ -30,29 +32,17 @@ app.get('/about', async (req, res) => {
 })
 
 app.get('/emissor', async (req, res) => {
-    res.render('pages/generator', { states, modalidades, fretes })
+    res.render('pages/generator', { states, modalidades, fretes, paymentMethods, formaPagamentos })
 })
 
 // app.use(Express.json())
 
 app.post("/nfe", async (req, res, next) => {
 
-    // const data = { ...res.body }
-
-    const body = req.body
-
-    const data = {
-        name: body.cliente_nome_completo,
-        data: body.data,
-        tipo_cliente: body.tipo_cliente
-    }
-
+    const data = req.body
+    console.log(req.body);
     const html = fs.readFileSync('./views/pages/nfteste.ejs', 'utf8')
-    
     const nfe = ejs.render(html, data)
-
-    console.log('html', html)
-    console.log('nfe', nfe)
 
     let options = {
         "height": "11.25in",
@@ -65,17 +55,15 @@ app.post("/nfe", async (req, res, next) => {
         }
     }
 
-    pdf.create(nfe).toBuffer((err, data) => {
+    pdf.create(nfe, options).toBuffer((err, data) => {
         if (err) {
             res.send(err)
         } else {
             res.contentType('application/pdf').send(data)
         }
     })
-
 })
 
 app.listen(port, () => {
     console.log("Servidor rodando na porta", port)
 })
-
