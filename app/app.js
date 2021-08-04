@@ -40,7 +40,7 @@ app.post("/nfe", async (req, res, next) => {
 
     const data = req.body
     console.log(data)
-    const html = fs.readFileSync('./views/pages/nfteste.ejs', 'utf8')
+    const html = fs.readFileSync(__dirname + '/app/views/pages/nf.ejs', 'utf8')
     const nfe = ejs.render(html, data)
 
     let options = {
