@@ -19,9 +19,10 @@ const __dirname = Path.resolve()
 routes(app)
 
 app.set('view engine', 'ejs')
-app.set('views', Path.join(__dirname, 'views'))
-app.use(Express.static(Path.join(__dirname, '/public')))
+app.set('views', Path.join(__dirname + '/app', 'views'))
+app.use(Express.static(Path.join(__dirname + '/app', '/public')))
 app.use(Express.urlencoded({ extended: true }))
+// app.use(Express.json())
 
 app.get('/', async (req, res) => {
     res.render('pages/home')
@@ -35,12 +36,10 @@ app.get('/emissor', async (req, res) => {
     res.render('pages/generator', { states, modalidades, fretes, paymentMethods, formaPagamentos })
 })
 
-// app.use(Express.json())
-
 app.post("/nfe", async (req, res, next) => {
 
     const data = req.body
-    console.log(req.body);
+    console.log(data)
     const html = fs.readFileSync('./views/pages/nfteste.ejs', 'utf8')
     const nfe = ejs.render(html, data)
 
