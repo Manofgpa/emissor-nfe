@@ -1,12 +1,9 @@
+import homeController from "../../controllers/homeController.js"
 
 
 export default v1Route => {
 
     v1Route.route('/')
-    
-        .get((req, res, next) => {
-            res.render('pages/home')
-        }
 
-        )
+        .get(homeController.getHome)
 }

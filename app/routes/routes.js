@@ -5,7 +5,6 @@ import generatorRoutes from './v1/generatorRoutes.js'
 import nfeRoutes from './v1/nfeRoutes.js'
 
 
-
 export default app => {
 
     const v1Route = express.Router()
