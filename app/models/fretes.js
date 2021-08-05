@@ -1,11 +1,11 @@
 
 const fretes = [
-    { value: null, name: "Selecione" },
-    { value: 0, name: "Correios" },
-    { value: 1, name: "Transportadora" },
-    { value: 2, name: "Mão Própria" },
-    { value: 3, name: "Camelo" },
-    { value: 4, name: "Jadlog" }
+    { value: "Selecione" },
+    { value: "Correios" },
+    { value: "Transportadora" },
+    { value: "Mão Própria" },
+    { value: "Camelo" },
+    { value: "Jadlog" }
 ]
 
 export default fretes

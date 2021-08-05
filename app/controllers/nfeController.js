@@ -8,7 +8,27 @@ const __dirname = path.resolve()
 
 const createNfe = (req, res) => {
     const data = req.body
-    console.log(data)
+    
+    data.numNf = Math.floor(100000 + Math.random() * 900000)
+
+    const date = new Date()
+
+    switch (data.pagamento) {
+        case '0':
+            data.faturas = [] 
+            break
+        case '1':
+            data.faturas = [date]
+            break
+        case '2':
+            data.faturas = []
+            break
+        default:
+            data.faturas = []
+            break
+    }
+
+
     const html = fs.readFileSync(__dirname + '/app/views/pages/nfe.ejs', 'utf8')
     const nfe = ejs.render(html, data)
 
@@ -30,7 +50,10 @@ const createNfe = (req, res) => {
             res.contentType('application/pdf').send(data)
         }
     })
+
+    console.log(data)
 }
+
 
 
 export default { createNfe }

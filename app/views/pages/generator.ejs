@@ -212,6 +212,7 @@
                     <input
                       type="text"
                       placeholder="Nome"
+                      class="product_input"
                       name="produtos_nome"
                     />
                   </td>
@@ -219,6 +220,7 @@
                     <input
                       type="text"
                       placeholder="UN"
+                      class="product_input"
                       name="produtos_unidade"
                     />
                   </td>
@@ -228,6 +230,7 @@
                       placeholder="0"
                       name="produtos_quantidade"
                       id="produtos_quantidade"
+                      class="product_input"
                       maxlength="10"
                       oninput="updateSubTotal()"
                     />
@@ -239,6 +242,7 @@
                       name="produtos_preco"
                       id="produtos_preco"
                       placeholder="R$"
+                      class="product_input"
                       step=".01"
                       oninput="updateSubTotal()"
                     />
@@ -251,6 +255,7 @@
                       id="produtos_subtotal"
                       name="produtos_subtotal"
                       disabled
+                      class="product_input"
                       value="0"
                     />
                   </td>
@@ -282,6 +287,14 @@
                       value="Atualizar Valor Total"
                     />
                   </td>
+                  <td>
+                    <input
+                      type="button"
+                      id="clear_values"
+                      class="botao"
+                      value="Limpar Campos"
+                    />
+                  </td>
 
                   <td>
                     <input
@@ -291,7 +304,7 @@
                       class="botao"
                       value="0.00"
                       disabled
-                      style="margin-left: calc(100% + 30px);"
+                      style="margin-left: calc(100% + 30px)"
                     />
                   </td>
                 </tr>
@@ -353,17 +366,17 @@
                   <select name="modalidade_frete" class="form-control">
                     <% modalidades.forEach(modalidades => { %>
                     <option value="<%= modalidades.value %>">
-                      <%= modalidades.name %>
+                      <%= modalidades.value %>
                     </option>
                     <% }) %>
                   </select>
                 </div>
                 <div class="col-md-6">
                   <label class="field-label">Forma de envio </label
-                  ><select name="forma_envio" class="form-control">
+                  ><select name="forma_envio" class="form-control" required>
                     <% fretes.forEach(fretes => { %>
                     <option value="<%= fretes.value %>">
-                      <%= fretes.name %>
+                      <%= fretes.value %>
                     </option>
                     <% }) %>
                   </select>
@@ -384,10 +397,10 @@
                   </div>
                 </div>
                 <div class="col-md-3">
-                  <label class="field-label">Qtd. Volumes</label
+                  <label class="field-label">Valor do seguro</label
                   ><input
                     type="text"
-                    name="qtd_volumes"
+                    name="valor_seguro"
                     class="form-control"
                     value=""
                   />
@@ -415,10 +428,11 @@
                   </div>
                 </div>
                 <div class="col-md-3">
-                  <label class="field-label">Espécie </label
+                  <label class="field-label">Placa do Veículo </label
                   ><input
                     type="text"
-                    name="especie"
+                    name="placa_veiculo"
+                    placeholder="XXX-000"
                     class="form-control"
                     value=""
                   />

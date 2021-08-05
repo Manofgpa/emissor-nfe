@@ -22,6 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
             totalNf.value = (Number(totalNf.value) + Number(totalProd[i].value)).toFixed(2)
         })
     })
+
+    document.getElementById('clear_values').addEventListener('click', () => {
+        Array.from(document.getElementsByClassName('product_input')).forEach((input) => input.value = '')
+        // console.log(produtos.value);
+        // produtos.map( (input) => { console.log(input); })
+
+    })
 })
 
 // Update subtotal products

@@ -144,14 +144,26 @@
     </style>
 
     <!-- scripts -->
+    <!-- Total invoice price -->
     <!-- prettier-ignore -->
     <% let totalNFPrice = 0 %>
     <% let totalNFQuantity = 0 %>
-    <% produtos_preco.forEach((v, i) => { %>
-    <%    totalNFPrice = Number(totalNFPrice) + (Number(produtos_preco[i]) * Number(produtos_quantidade[i])) %>
-    <%    totalNFQuantity = Number(totalNFQuantity) + Number(produtos_quantidade[i]) %> 
-    <% }) %> 
+    <% if (produtos_preco.length > 1) { %>
+      <% produtos_preco.forEach((v, i) => { %>
+      <%    totalNFPrice = Number(totalNFPrice) + (Number(produtos_preco[i]) * Number(produtos_quantidade[i])) %>
+      <%    totalNFQuantity = Number(totalNFQuantity) + Number(produtos_quantidade[i]) %> 
+      <% }) %>
+    <% } %> 
     <% totalNFPrice = Math.round(totalNFPrice * 100) / 100 %>
+
+    <!-- Payment checker -->
+    <!-- prettier-ignore -->
+
+    <!-- Date handler -->
+    <!-- prettier-ignore -->
+    <% let date = new Date() %>
+    <% formattedDate = ((date.getDate() )) + '/' + ((date.getMonth() + 1)) + '/' + date.getFullYear() %>
+    <% formattedHour = ((date.getHours()) + ':' + (date.getMinutes())) %>
 
     <div class="danfe_pagina">
       <div class="danfe_pagina2">
@@ -184,7 +196,7 @@
                 <tr>
                   <td class="danfe_celula_bordas" align="center">
                     <strong>NF-e</strong>
-                    <h2 class="danfe_cabecalho_numero">N&ordm; 32184</h2>
+                    <h2 class="danfe_cabecalho_numero">N&ordm; <%= numNf %></h2>
                     <strong>S&eacute;rie 1</strong>
                   </td>
                 </tr>
@@ -217,7 +229,7 @@
                   <td class="danfe_cabecalho_entrada_saida_quadrado">1</td>
                 </tr>
               </table>
-              <p class="danfe_cabecalho_numero">N&ordm; 032184</p>
+              <p class="danfe_cabecalho_numero">N&ordm; <%= numNf %></p>
               <p class="danfe_cabecalho_danfe_texto">
                 SERIE: 1<br />P&aacute;gina: 1 de 1
               </p>
@@ -277,7 +289,7 @@
             </td>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">Inscr.est. do subst.trib.</p>
-              <p class="danfe_celula_valor">&nbsp;</p>
+              <p class="danfe_celula_valor">ISENTO</p>
             </td>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">CNPJ</p>
@@ -308,7 +320,14 @@
                     <p class="danfe_celula_titulo">
                       Inscri&ccedil;&atilde;o Estadual
                     </p>
-                    <p class="danfe_celula_valor">{ie}</p>
+                    <p class="danfe_celula_valor">
+                      <!-- prettier-ignore -->
+                      <% if (cliente_ie) { %>
+                        <%= cliente_ie %>
+                      <%} else { %>
+                        ISENTO
+                      <% } %>
+                    </p>
                   </td>
                 </tr>
                 <tr>
@@ -352,13 +371,13 @@
                 <tr>
                   <td class="danfe_celula_bordas">
                     <p class="danfe_celula_titulo">Data sa&iacute;da</p>
-                    <p class="danfe_celula_valor"><%= data %></p>
+                    <p class="danfe_celula_valor"><%= formattedDate %></p>
                   </td>
                 </tr>
                 <tr>
                   <td class="danfe_celula_bordas">
                     <p class="danfe_celula_titulo">Hora sa&iacute;da</p>
-                    <p class="danfe_celula_valor">23:32</p>
+                    <p class="danfe_celula_valor"><%= formattedHour %>H</p>
                   </td>
                 </tr>
               </table>
@@ -385,13 +404,13 @@
             </th>
           </tr>
           <tr class="danfe_item">
-            <td align="left">{fatura}</td>
+            <td align="left"><%= numNf %>-01</td>
+            <td align="left"></td>
+            <td style="border-right: solid black 1px">{valor}</td>
+            <td align="left"><%= numNf %>-02</td>
             <td align="left">{data}</td>
             <td style="border-right: solid black 1px">{valor}</td>
-            <td align="left">{fatura}</td>
-            <td align="left">{data}</td>
-            <td style="border-right: solid black 1px">{valor}</td>
-            <td align="left">{fatura}</td>
+            <td align="left"><%= numNf %>-03</td>
             <td align="left">{data}</td>
             <td style="border-right: solid black 1px">{valor}</td>
           </tr>
@@ -434,7 +453,7 @@
             </td>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">Valor do seguro</p>
-              <p class="danfe_celula_valor">0,00</p>
+              <p class="danfe_celula_valor"><%= valor_seguro %></p>
             </td>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">Desconto</p>
@@ -469,7 +488,7 @@
             </td>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">Frete por conta</p>
-              <p class="danfe_celula_valor"><%= modalidade_frete.name %></p>
+              <p class="danfe_celula_valor"><%= modalidade_frete %></p>
             </td>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">C&oacute;digo ANTT</p>
@@ -477,7 +496,7 @@
             </td>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">Placa do ve&iacute;culo</p>
-              <p class="danfe_celula_valor">&nbsp;</p>
+              <p class="danfe_celula_valor"><%= placa_veiculo %></p>
             </td>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">UF</p>
@@ -521,7 +540,7 @@
             </td>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">Esp&eacute;cie</p>
-              <p class="danfe_celula_valor"><%= especie %></p>
+              <p class="danfe_celula_valor"></p>
             </td>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">Marca</p>
