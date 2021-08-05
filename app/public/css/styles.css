@@ -5,9 +5,19 @@
     font-family: 'Open Sans', sans-serif;
     margin: 0;
     padding: 0;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+
 /* Pagina Github */
+
 #github {
     margin: 0 auto;
     width: 50%;
@@ -68,6 +78,11 @@
 
 }
 
+.products_table {
+    table-layout:fixed;
+    width:100%;
+}
+
 #emitirnf {
     width: auto;
     margin-left: 45%;
@@ -89,13 +104,11 @@
     margin-left: 10px;
 }
 
+/* Footer  */
 
 footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-
-    width: 100%;
+    margin-top: 100px;
+    padding: 10px;
     background-color: black;
     color: white;
     text-align: center;

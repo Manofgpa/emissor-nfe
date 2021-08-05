@@ -2,15 +2,14 @@
 <html lang="en">
   <head>
     <%- include('../include/head') %>
-
+    <title>Emissor de NFe - Emissor</title>
     <style>
       #aemissor {
         color: #fff;
       }
     </style>
-
-    <title>Emissor de NFe - Emissor</title>
   </head>
+
   <body>
     <%- include('../include/header') %>
 
@@ -29,16 +28,13 @@
                   style="padding: 10px"
                   type="date"
                   id="data"
-                  value="date"
                   name="data"
-                  checked
                 />
                 <div>
                   <label for="tipo_operacao">Natureza de Operação</label>
                   <input type="text" id="tipo_operacao" name="tipo_operacao" />
                 </div>
               </div>
-
               <div>
                 <input
                   type="radio"
@@ -49,11 +45,10 @@
                 />
                 <label for="pf">Pessoa Física</label>
               </div>
-
-              <!-- <div>
-              <input type="radio" id="pj" value="pj" name="tipo_cliente" />
-              <label for="pj">Pessoa Jurídica</label>
-            </div> -->
+              <div>
+                <input type="radio" id="pj" value="pj" name="tipo_cliente" />
+                <label for="pj">Pessoa Jurídica</label>
+              </div>
 
               <div>
                 <div class="row row--no-margin">
@@ -68,6 +63,7 @@
                         class="form-control"
                         autocomplete="off"
                         value=""
+                        required
                       />
                     </div>
                   </div>
@@ -171,7 +167,6 @@
                       </option>
                       <% }) %>
                     </select>
-
                   </div>
                   <div class="col-md-6">
                     <label class="field-label">E-mail</label
@@ -196,13 +191,12 @@
               </div>
             </fieldset>
           </div>
-
           <div class="produtos">
             <h3 class="informacoes-produto">Informações dos Produtos</h3>
           </div>
           <hr />
-          <div class="products-table">
-            <table class="table">
+          <div class="table">
+            <table class="table products_table">
               <thead>
                 <tr>
                   <th>Nome</th>
@@ -263,45 +257,47 @@
                 </tr>
               </tbody>
               <tfoot>
-                <td>
-                  <input
-                    type="button"
-                    id="addproduct"
-                    class="botao"
-                    value="Adicionar Produto"
-                  />
-                </td>
-                <td>
-                  <input
-                    type="button"
-                    id="removeproduct"
-                    class="botao"
-                    value="Remover Produto"
-                  />
-                </td>
-                <td>
-                  <input
-                    type="button"
-                    id="update_total"
-                    class="botao"
-                    value="Atualizar Valor Total"
-                  />
-                </td>
-                <td>
-                  <input
-                    type="number"
-                    id="produtos_total_nota"
-                    name="produtos_total_nota"
-                    class="botao"
-                    value="0,00"
-                    disabled
-                    style="margin-left: 25em"
-                  />
-                </td>
+                <tr>
+                  <td>
+                    <input
+                      type="button"
+                      id="addproduct"
+                      class="botao"
+                      value="Adicionar Produto"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="button"
+                      id="removeproduct"
+                      class="botao"
+                      value="Remover Produto"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="button"
+                      id="update_total"
+                      class="botao"
+                      value="Atualizar Valor Total"
+                    />
+                  </td>
+
+                  <td>
+                    <input
+                      type="number"
+                      id="produtos_total_nota"
+                      name="produtos_total_nota"
+                      class="botao"
+                      value="0.00"
+                      disabled
+                      style="margin-left: calc(100% + 30px);"
+                    />
+                  </td>
+                </tr>
               </tfoot>
             </table>
           </div>
-
           <div class="col-md-12">
             <h4>Informações de Pagamento</h4>
             <div class="informacoes-pagamento">
@@ -343,7 +339,6 @@
               </div>
             </div>
           </div>
-
           <div>
             <div class="col-md-12">
               <h3 class="informacoes-produto">
@@ -457,15 +452,13 @@
                 </div>
               </div>
             </fieldset>
+            <button type="submit" form="mainform" id="emitirnf" class="botao">
+              Emitir Nota Fiscal
+            </button>
           </div>
         </div>
       </form>
-
-      <button type="submit" form="mainform" id="emitirnf" class="botao">
-        Emitir Nota Fiscal
-      </button>
     </main>
-
     <%- include('../include/footer') %>
   </body>
 </html>
