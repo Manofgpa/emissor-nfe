@@ -11,7 +11,7 @@ const __dirname = path.resolve()
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname + '/app', 'views'))
 
-// 
+// Public page
 app.use(express.static(path.join(__dirname + '/app', '/public')))
 
 // Url & Json parser

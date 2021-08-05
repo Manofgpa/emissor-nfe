@@ -1,8 +1,8 @@
-import states from '../views/loaders/states.js'
-import modalidades from '../views/loaders/modalidades.js'
-import fretes from '../views/loaders/fretes.js'
-import paymentMethods from '../views/loaders/meioPagamentos.js'
-import formaPagamentos from '../views/loaders/formaPagamentos.js'
+import states from '../models/states.js'
+import modalidades from '../models/modalidades.js'
+import fretes from '../models/fretes.js'
+import paymentMethods from '../models/meioPagamentos.js'
+import formaPagamentos from '../models/formaPagamentos.js'
 import Joi from "joi"
 
 const getGenerator = (req, res) => {
