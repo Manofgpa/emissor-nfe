@@ -9,4 +9,5 @@ const getGenerator = (req, res) => {
     res.render('pages/generator', { states, modalidades, fretes, paymentMethods, formaPagamentos })
 }
 
+
 export default { getGenerator }

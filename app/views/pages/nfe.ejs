@@ -143,28 +143,6 @@
       }
     </style>
 
-    <!-- scripts -->
-    <!-- Total invoice price -->
-    <!-- prettier-ignore -->
-    <% let totalNFPrice = 0 %>
-    <% let totalNFQuantity = 0 %>
-    <% if (produtos_preco.length > 1) { %>
-      <% produtos_preco.forEach((v, i) => { %>
-      <%    totalNFPrice = Number(totalNFPrice) + (Number(produtos_preco[i]) * Number(produtos_quantidade[i])) %>
-      <%    totalNFQuantity = Number(totalNFQuantity) + Number(produtos_quantidade[i]) %> 
-      <% }) %>
-    <% } %> 
-    <% totalNFPrice = Math.round(totalNFPrice * 100) / 100 %>
-
-    <!-- Payment checker -->
-    <!-- prettier-ignore -->
-
-    <!-- Date handler -->
-    <!-- prettier-ignore -->
-    <% let date = new Date() %>
-    <% formattedDate = ((date.getDate() )) + '/' + ((date.getMonth() + 1)) + '/' + date.getFullYear() %>
-    <% formattedHour = ((date.getHours()) + ':' + (date.getMinutes())) %>
-
     <div class="danfe_pagina">
       <div class="danfe_pagina2">
         <table class="danfe_tabelas">
@@ -365,7 +343,7 @@
                 <tr>
                   <td class="danfe_celula_bordas">
                     <p class="danfe_celula_titulo">Data emiss&atilde;o</p>
-                    <p class="danfe_celula_valor"><%= data %></p>
+                    <p class="danfe_celula_valor"><%= data_nf %></p>
                   </td>
                 </tr>
                 <tr>
