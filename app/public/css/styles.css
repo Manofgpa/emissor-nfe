@@ -24,15 +24,15 @@ body {
     margin-top: 20px;
 }
 
-#github img {
+.github img {
     margin: 20px 0;
 }
 
-#github h2 {
+.github h2 {
     margin-bottom: 15px;
 }
 
-#name {
+.name {
     display: none;
 }
 

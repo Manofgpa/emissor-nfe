@@ -17,14 +17,13 @@ const createNfe = (req, res) => {
         formattedHour = ((date.getHours()) + ':' + (date.getMinutes()))
 
     // Get total NF price and quantity
-    if (data.produtos_preco) {
-        if (data.produtos_preco.length > 1) {
-            data.produtos_preco.forEach((v, i) => {
-                totalNFPrice = Number(totalNFPrice) + (Number(data.produtos_preco[i]) * Number(data.produtos_quantidade[i]))
-                totalNFQuantity = Number(totalNFQuantity) + Number(data.produtos_quantidade[i])
-            })
-        }
+    if (Array.isArray(data.produtos_preco)) {
+        data.produtos_preco.forEach((v, i) => {
+            totalNFPrice = Number(totalNFPrice) + (Number(data.produtos_preco[i]) * Number(data.produtos_quantidade[i]))
+            totalNFQuantity = Number(totalNFQuantity) + Number(data.produtos_quantidade[i])
+        })
     }
+    
     totalNFPrice = Math.round(totalNFPrice * 100) / 100
 
     data = {

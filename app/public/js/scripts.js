@@ -1,17 +1,21 @@
 // Waits for the DOM content to be loaded
 document.addEventListener('DOMContentLoaded', () => {
 
-    const tbody = document.getElementById('ptbody')
+    const tbody = document.getElementById('ptbody'),
+        productInput = document.getElementsByClassName('product_input')
 
     // Add product
     document.getElementById('addproduct').addEventListener('click', () => {
         // tbody = document.getElementById('ptbody')
-        var node = tbody.rows[0].cloneNode(true)
+        const node = tbody.rows[0].cloneNode(true)
         tbody.appendChild(node)
     })
 
     // Remove last product
     document.getElementById('removeproduct').addEventListener('click', () => tbody.deleteRow(1))
+
+    // Clear all values
+    document.getElementById('clear_values').addEventListener('click', () => Array.from(productInput).forEach((input) => input.value = ''))
 
     // Update total price
     document.querySelector('#update_total').addEventListener('click', () => {
@@ -21,13 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
         totalProd.forEach((value, i) => {
             totalNf.value = (Number(totalNf.value) + Number(totalProd[i].value)).toFixed(2)
         })
-    })
-
-    document.getElementById('clear_values').addEventListener('click', () => {
-        Array.from(document.getElementsByClassName('product_input')).forEach((input) => input.value = '')
-        // console.log(produtos.value);
-        // produtos.map( (input) => { console.log(input); })
-
     })
 })
 
