@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
+    <link rel="stylesheet" href="/css/home.css">
     <%- include('../include/head') %>
     <style>
       #ahome {
@@ -9,21 +10,19 @@
     </style>
     <title>Emissor de NFe - Home</title>
   </head>
-  <body>
+  <body class="body">
     <%- include('../include/header') %>
 
     <main>
       <div class="imginit text-center">
         <img
-          src="https://gestaoclick.com.br/wp-content/uploads/Qual_emissor_de_nota_fiscal_devo_escolher_10_55_39.png"
+          src="/img/emissor.png"
           width="800px"
           alt="Imagem principal emissor"
         />
       </div>
       <div class="text-center">
-        <form action="/emissor">
-          <button type="submit" name="">Acesse o emissor</button>
-        </form>
+        <span><a href="/emissor"></a></span>
       </div>
       <hr />
     </main>

@@ -20,8 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
             .then((res) => res.json())
             .then((data) => {
                 if (data.message == 'Not Found') {
+                    const user = document.getElementById('user').value
+                    user !== '' ? document.getElementById('span').textContent = `Usuário "${user}" não existe, favor informar usuário correto.` : document.getElementById('span').textContent = "Favor informar usuário."
+                     
                     resetData()
-                    document.getElementById('span').textContent = 'Usuário não encontrado, favor informar usuário correto.'
                     
                 }
                 else {

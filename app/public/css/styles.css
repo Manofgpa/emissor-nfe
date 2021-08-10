@@ -8,12 +8,42 @@
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-tap-highlight-color: transparent;
     -webkit-font-smoothing: antialiased;
+    --primary-color: #4668C7;
+    --secondary-color: #505B7A;
+    --bg-color: hsl(219, 100%, 93%);
+    --support-color: #2B407A;
+
 }
+
+/* Todas paginas */
 
 body {
     display: flex;
     flex-direction: column;
 }
+
+.body {
+    background-color: var(--bg-color);
+
+}
+
+#navbar {
+    background-color: var(--primary-color);
+}
+
+input, select {
+    background-color: var(--secondary-color) !important;
+    color: white !important;
+}
+
+label {
+    font-weight: 600;
+}
+
+::placeholder {
+    color: white !important;
+}
+
 
 
 /* Pagina Github */
@@ -117,8 +147,8 @@ body {
 }
 
 #produtos_total_nota {
-    background-color: black;
-    color: white;
+    background-color: #4DAF50;
+    font-weight: 600;
 }
 
 .botao {
@@ -137,8 +167,8 @@ body {
 
 footer {
     margin-top: 100px;
-    padding: 10px;
-    background-color: black;
+    padding: 30px;
+    background-color: var(--primary-color);
     color: white;
     text-align: center;
 }
