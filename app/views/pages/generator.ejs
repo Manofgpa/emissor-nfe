@@ -26,23 +26,26 @@
               </div>
             </div>
             <hr />
+            <h1 style="text-align: center">Nota fiscal</h1>
+            <hr />
             <div class="col-md-12">
-              <h3 class="titulo-informacoes">Informações do Cliente</h3>
-              <hr />
-            </div>
-            <fieldset class="form-group">
-              <div style="display: flex">
-                <label for="data">Data</label>
+              <div class="headform">
+                <label for="data" class="label col-1">Data</label>
                 <input
-                  style="padding: 0"
                   type="date"
                   id="data"
                   name="data_nf"
-                  class="botao"
+                  class="headinputs"
                   value="<%= locals.data_nf ? locals.data_nf : '' %>"
                 />
-                <label for="tipo_operacao">Natureza de Operação</label>
-                <select name="tipo_operacao" id="tipo_operacao" class="botao">
+                <label for="tipo_operacao" class="label"
+                  >Natureza de Operação</label
+                >
+                <select
+                  name="tipo_operacao"
+                  id="tipo_operacao"
+                  class="headinputs col-5"
+                >
                   <% naturezaOperacao.forEach(natureza => { %>
                   <option value="<%= natureza.tipo %>">
                     <%= natureza.tipo %>
@@ -50,21 +53,27 @@
                   <% }) %>
                 </select>
               </div>
-              <div>
-                <input
-                  type="radio"
-                  id="pf"
-                  value="<%= locals.tipo_cliente ? locals.tipo_cliente : 'pf' %>"
-                  name="tipo_cliente"
-                  checked
-                />
-                <label for="pf">Pessoa Física</label>
+              <h3 class="titulo-informacoes">Informações do Cliente</h3>
+              <hr />
+            </div>
+            <fieldset class="form-group">
+              <div class="tipo_cliente">
+                <label for="tipo_cliente">Tipo cliente</label>
+                <div>
+                  <input
+                    type="radio"
+                    id="pf"
+                    value="<%= locals.tipo_cliente ? locals.tipo_cliente : 'pf' %>"
+                    name="tipo_cliente"
+                    checked
+                  />
+                  <label for="pf">Pessoa Física</label>
+                </div>
+                <div>
+                  <input type="radio" id="pj" value="pj" name="tipo_cliente" />
+                  <label for="pj">Pessoa Jurídica</label>
+                </div>
               </div>
-              <div>
-                <input type="radio" id="pj" value="pj" name="tipo_cliente" />
-                <label for="pj">Pessoa Jurídica</label>
-              </div>
-
               <div>
                 <div class="row row--no-margin">
                   <div class="col-md-4">
@@ -209,9 +218,9 @@
             </fieldset>
           </div>
           <div class="produtos">
+            <hr />
             <h3 class="titulo-informacoes">Informações dos Produtos</h3>
           </div>
-          <hr />
           <div class="table">
             <table class="table products_table">
               <thead>
@@ -320,7 +329,7 @@
                       type="number"
                       id="produtos_total_nota"
                       name="produtos_total_nota"
-                      class="botao produtos_total_nota"
+                      class="botao produtos_total_nota form-control"
                       value="0.00"
                       disabled
                     />
@@ -371,11 +380,12 @@
             </div>
           </div>
           <div>
+            <hr />
+
             <div class="col-md-12">
               <h3 class="titulo-informacoes">
                 <a>Informações de Transporte</a>
               </h3>
-              <hr />
             </div>
             <fieldset>
               <div class="row">
