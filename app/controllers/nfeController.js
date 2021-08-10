@@ -3,10 +3,19 @@ import path from "path"
 import pdf from "html-pdf"
 import ejs from 'ejs'
 import validate from '../utils/dto-validate.js'
+import generatorRoutes from '../routes/v1/generatorRoutes.js'
+import states from '../models/states.js'
+import modalidades from '../models/modalidades.js'
+import fretes from '../models/fretes.js'
+import paymentMethods from '../models/meioPagamentos.js'
+import formaPagamentos from '../models/formaPagamentos.js'
+import naturezaOperacao from '../models/naturezaOperacao.js'
+
 
 const __dirname = path.resolve()
 
 const createNfe = (req, res) => {
+
     let totalNFPrice = 0,
         totalNFQuantity = 0,
         data = req.body,
@@ -23,7 +32,7 @@ const createNfe = (req, res) => {
             totalNFQuantity = Number(totalNFQuantity) + Number(data.produtos_quantidade[i])
         })
     }
-    
+
     totalNFPrice = Math.round(totalNFPrice * 100) / 100
 
     data = {
@@ -34,24 +43,6 @@ const createNfe = (req, res) => {
         formattedHour,
         numNf
     }
-
-    console.log(validate(data))
-
-
-    // switch (data.pagamento) {
-    //     case '0':
-    //         data.faturas = [] 
-    //         break
-    //     case '1':
-    //         data.faturas = [date]
-    //         break
-    //     case '2':
-    //         data.faturas = []
-    //         break
-    //     default:
-    //         data.faturas = []
-    //         break
-    // }
 
     const html = fs.readFileSync(__dirname + '/app/views/pages/nfe.ejs', 'utf8')
     const nfe = ejs.render(html, data)
@@ -67,16 +58,36 @@ const createNfe = (req, res) => {
         }
     }
 
-    pdf.create(nfe, options).toBuffer((err, data) => {
-        if (err) {
-            res.send(err)
-        } else {
-            res.contentType('application/pdf').send(data)
-        }
-    })
+    const validation = validate(data)
 
+    // console.log(validation)
+    // console.log('-----------------')
+    if (validation.error) {
+        console.log(validation.error);
+        data = {
+            ...data,
+            errorMessages: validation.error,
+            states,
+            modalidades,
+            fretes,
+            paymentMethods,
+            formaPagamentos,
+            naturezaOperacao
+        }
+        res.render('pages/generator', data)
+        // res.redirect('/emissor')
+        console.log(data)
+    }
+    else {
+        pdf.create(nfe, options).toBuffer((err, data) => {
+            if (err) {
+                res.send(err)
+            } else {
+                res.contentType('application/pdf').send(data)
+            }
+        })
+    }
     // console.log(data)
 }
-
 
 export default { createNfe }

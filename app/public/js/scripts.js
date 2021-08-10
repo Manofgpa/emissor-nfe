@@ -26,6 +26,14 @@ document.addEventListener('DOMContentLoaded', () => {
             totalNf.value = (Number(totalNf.value) + Number(totalProd[i].value)).toFixed(2)
         })
     })
+
+    function stopDefAction(evt) {
+        evt.preventDefault();
+    }
+
+    // document.getElementById('emitirnf').addEventListener('click', stopDefAction, false)
+
+
 })
 
 // Update subtotal products

@@ -1,6 +1,6 @@
 
 const fretes = [
-    { value: "Selecione" },
+    { value: "---" },
     { value: "Correios" },
     { value: "Transportadora" },
     { value: "Mão Própria" },

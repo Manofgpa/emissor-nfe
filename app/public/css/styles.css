@@ -54,6 +54,11 @@ body {
     margin: 10px 20px;
 }
 
+.error {
+    color: red;
+    border: 1px solid black;
+}
+
 #dados {
     display: none;
     margin: 20px 20px;
@@ -64,6 +69,11 @@ body {
 }
 
 /* Pagina Emissor */
+
+.titulo-informacoes {
+    font-size: 2em;
+    margin: 25px 0;
+}
 
 .col-md {
     margin-bottom: 10px;
@@ -83,11 +93,7 @@ body {
     width:100%;
 }
 
-#emitirnf {
-    width: auto;
-    margin-left: 45%;
-    margin-top: 20px;
-}
+
 
 #emitirnf:hover,
 .botao:hover {
@@ -101,7 +107,14 @@ body {
 
 .botao {
     padding: 5px;
-    margin-left: 10px;
+}
+
+#emitirnf {
+    width: 100%;
+    margin: 30px 0;
+    background-color: #4DAF50;
+    font-size: large;
+    font-weight: 600;
 }
 
 /* Footer  */

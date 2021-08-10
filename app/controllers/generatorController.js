@@ -3,11 +3,11 @@ import modalidades from '../models/modalidades.js'
 import fretes from '../models/fretes.js'
 import paymentMethods from '../models/meioPagamentos.js'
 import formaPagamentos from '../models/formaPagamentos.js'
-import Joi from "joi"
+import naturezaOperacao from '../models/naturezaOperacao.js'
+
 
 const getGenerator = (req, res) => {
-    res.render('pages/generator', { states, modalidades, fretes, paymentMethods, formaPagamentos })
+    res.render('pages/generator', { states, modalidades, fretes, paymentMethods, formaPagamentos, naturezaOperacao })
 }
-
 
 export default { getGenerator }
