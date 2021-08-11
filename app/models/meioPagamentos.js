@@ -1,6 +1,5 @@
 
 const paymentMethods = [
-    { value: '', name: '---' },
     { value: '01', name: 'Dinheiro' },
     { value: '02', name: 'Cheque' },
     { value: '03', name: 'Cartão de Crédito' },

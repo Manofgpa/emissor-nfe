@@ -36,6 +36,7 @@
                   id="data"
                   name="data_nf"
                   class="headinputs"
+                  min="1997-01-01" max="2030-12-31"
                   value="<%= locals.data_nf ? locals.data_nf : '' %>"
                 />
                 <label for="tipo_operacao" class="label"
@@ -46,6 +47,7 @@
                   id="tipo_operacao"
                   class="headinputs col-5"
                 >
+                  <option selected="true" disabled="disabled">---</option>
                   <% naturezaOperacao.forEach(natureza => { %>
                   <option value="<%= natureza.tipo %>">
                     <%= natureza.tipo %>
@@ -117,7 +119,7 @@
                   <div class="col-md-2">
                     <label class="field-label">Consumidor Final</label
                     ><select name="consumidor_final" class="form-control">
-                      <option value="">---</option>
+                      <option selected="true" disabled="disabled">---</option>
                       <option value="0">Não</option>
                       <option value="1">Sim</option>
                     </select>
@@ -187,6 +189,7 @@
                       >Estado <span class="field-required">*</span></label
                     >
                     <select name="cliente_uf" class="form-control">
+                      <option selected="true" disabled="disabled">---</option>
                       <% states.forEach(states => { %>
                       <option value="<%= states.uf %>">
                         <%= states.name %>
@@ -284,6 +287,7 @@
                       name="produtos_subtotal"
                       class="product_input form-control"
                       placeholder="R$"
+                      disabled
                       value="<%= locals.produtos_subtotal ? locals.produtos_subtotal : 0 %>"
                     />
                   </td>
@@ -346,6 +350,7 @@
                   <div class="col-md-4">
                     <label class="field-label">Meio de pagamento </label
                     ><select name="forma_pagamento" class="form-control">
+                      <option selected="true" disabled="disabled">---</option>
                       <% paymentMethods.forEach(method => { %>
                       <option value="<%= method.name %>">
                         <%= method.name %>
@@ -356,6 +361,7 @@
                   <div class="col-md-4">
                     <label class="field-label">Forma de pagamento</label
                     ><select name="pagamento" class="form-control">
+                      <option selected="true" disabled="disabled">---</option>
                       <% formaPagamentos.forEach(forma => { %>
                       <option value="<%= forma.value %>">
                         <%= forma.name %>
@@ -392,6 +398,7 @@
                 <div class="col-md-6">
                   <label>Modalidade do frete </label>
                   <select name="modalidade_frete" class="form-control">
+                    <option selected="true" disabled="disabled">---</option>
                     <% modalidades.forEach(modalidades => { %>
                     <option value="<%= modalidades.value %>">
                       <%= modalidades.value %>
@@ -402,6 +409,7 @@
                 <div class="col-md-6">
                   <label class="field-label">Forma de envio </label
                   ><select name="forma_envio" class="form-control" required>
+                    <option selected="true" disabled="disabled">---</option>
                     <% fretes.forEach(fretes => { %>
                     <option value="<%= fretes.value %>">
                       <%= fretes.value %>
@@ -469,12 +477,12 @@
                   />
                 </div>
                 <div class="col-md-3">
-                  <label class="field-label">Marca </label
+                  <label class="field-label">Espécie </label
                   ><input
                     type="text"
-                    name="marca"
+                    name="especie"
                     class="form-control"
-                    value="<%= locals.marca ? locals.marca : '' %>"
+                    value="<%= locals.especie ? locals.especie : '' %>"
                   />
                 </div>
                 <div class="col-md-3">

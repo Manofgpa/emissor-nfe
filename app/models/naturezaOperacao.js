@@ -1,7 +1,6 @@
 
 
 const naturezaOperacao = [
-    { tipo: "---" },
     { tipo: 'Venda de mercadoria dentro do Estado' },
     { tipo: 'Venda de mercadoria fora do Estado' },
     { tipo: 'Venda de mercadoria fora do Pais' },

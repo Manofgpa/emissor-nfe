@@ -1,6 +1,5 @@
 
 const fretes = [
-    { value: "---" },
     { value: "Correios" },
     { value: "Transportadora" },
     { value: "Mão Própria" },

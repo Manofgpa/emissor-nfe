@@ -246,14 +246,14 @@
               <p class="danfe_celula_titulo">
                 Natureza da opera&ccedil;&atilde;o
               </p>
-              <p class="danfe_celula_valor"><%= tipo_operacao %></p>
+              <p class="danfe_celula_valor"><%= locals.tipo_operacao %></p>
             </td>
             <td class="danfe_celula_bordas" align="center">
               <p class="danfe_celula_titulo">
                 N&uacute;mero de protocolo de autoriza&ccedil;&atilde;o de uso
                 da NF-e
               </p>
-              <p class="danfe_celula_valor">{NUMERO PROTOCOLO}</p>
+              <p class="danfe_celula_valor"><%= protocoloAutorizacao %></p>
             </td>
           </tr>
         </table>
@@ -333,7 +333,7 @@
                   </td>
                   <td class="danfe_celula_bordas">
                     <p class="danfe_celula_titulo">UF</p>
-                    <p class="danfe_celula_valor"><%= cliente_uf %></p>
+                    <p class="danfe_celula_valor"><%= locals.cliente_uf %></p>
                   </td>
                 </tr>
               </table>
@@ -349,13 +349,13 @@
                 <tr>
                   <td class="danfe_celula_bordas">
                     <p class="danfe_celula_titulo">Data sa&iacute;da</p>
-                    <p class="danfe_celula_valor"><%= formattedDate %></p>
+                    <p class="danfe_celula_valor"><%= currentDate %></p>
                   </td>
                 </tr>
                 <tr>
                   <td class="danfe_celula_bordas">
                     <p class="danfe_celula_titulo">Hora sa&iacute;da</p>
-                    <p class="danfe_celula_valor"><%= formattedHour %>H</p>
+                    <p class="danfe_celula_valor"><%= currentHour %></p>
                   </td>
                 </tr>
               </table>
@@ -385,12 +385,12 @@
             <td align="left"><%= numNf %>-01</td>
             <td align="left"></td>
             <td style="border-right: solid black 1px">{valor}</td>
-            <td align="left"><%= numNf %>-02</td>
+            <!-- <td align="left"><%= numNf %>-02</td>
             <td align="left">{data}</td>
             <td style="border-right: solid black 1px">{valor}</td>
             <td align="left"><%= numNf %>-03</td>
             <td align="left">{data}</td>
-            <td style="border-right: solid black 1px">{valor}</td>
+            <td style="border-right: solid black 1px">{valor}</td> -->
           </tr>
           <tr>
             <td class="danfe_item_ultimo" colspan="9">&nbsp;</td>
@@ -401,7 +401,7 @@
           <tr>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">Base de c&aacute;lculo do ICMS</p>
-              <p class="danfe_celula_valor">R$ <%= totalNFPrice %></p>
+              <p class="danfe_celula_valor"><%= totalNFPrice %></p>
             </td>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">Valor do ICMS</p>
@@ -411,7 +411,7 @@
               <p class="danfe_celula_titulo">
                 Base de c&aacute;lculo do ICMS Subst.
               </p>
-              <p class="danfe_celula_valor">R$ <%= totalNFPrice %></p>
+              <p class="danfe_celula_valor"><%= totalNFPrice %></p>
             </td>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">Valor do ICMS Subst.</p>
@@ -419,7 +419,7 @@
             </td>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">Valor total dos produtos</p>
-              <p class="danfe_celula_valor">R$ <%= totalNFPrice %></p>
+              <p class="danfe_celula_valor"><%= totalNFPrice %></p>
             </td>
           </tr>
         </table>
@@ -450,7 +450,7 @@
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">Valor total da nota</p>
               <p class="danfe_celula_valor">
-                R$ <%= Math.round(totalNFPrice * 100) / 100 %>
+                <%= Math.round(totalNFPrice * 100) / 100 %>
               </p>
             </td>
           </tr>
@@ -462,11 +462,11 @@
           <tr>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">Nome</p>
-              <p class="danfe_celula_valor"><%= forma_envio %></p>
+              <p class="danfe_celula_valor"><%= locals.forma_envio %></p>
             </td>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">Frete por conta</p>
-              <p class="danfe_celula_valor"><%= modalidade_frete %></p>
+              <p class="danfe_celula_valor"><%= locals.modalidade_frete %></p>
             </td>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">C&oacute;digo ANTT</p>
@@ -518,11 +518,11 @@
             </td>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">Esp&eacute;cie</p>
-              <p class="danfe_celula_valor"></p>
+              <p class="danfe_celula_valor"><%= especie %></p>
             </td>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">Marca</p>
-              <p class="danfe_celula_valor"><%= marca %></p>
+              <p class="danfe_celula_valor"></p>
             </td>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">Numera&ccedil;&atilde;o</p>
@@ -558,52 +558,41 @@
             <th class="danfe_item_cabecalho">%ICMS</th>
             <th class="danfe_item_cabecalho">%IPI</th>
           </tr>
-          <tr class="danfe_item">
-            <td align="left">{codigo}</td>
-            <td align="left">{descricao}</td>
-            <td>{ncm}</td>
-            <td>{cst}</td>
-            <td>{cfop}</td>
-            <td>{un com}</td>
-            <td>{qnt}</td>
-            <td>{preco un}</td>
-            <td>{preco total}</td>
-            <td>{bc icms}</td>
-            <td>{valor icms}</td>
-            <td>{valor ipi}</td>
-            <td>{% icms}</td>
-            <td>{% ipi}</td>
-          </tr>
-
           <!-- prettier-ignore -->
-
+          <% produtos.forEach((produtos, i) =>{ %>
           <tr class="danfe_item">
-            <td align="left">{codigo}</td>
-            <td align="left">{descricao}</td>
+            <td align="left" style="padding-bottom: 8px; vertical-align: middle;">{codigo}</td>
+            <td align="left"><%= locals.produtos[i][0].name %></td>
             <td>{ncm}</td>
             <td>{cst}</td>
             <td>{cfop}</td>
-            <td>{un com}</td>
-            <td>{qnt}</td>
-            <td>{preco un}</td>
-            <td>{preco total}</td>
-            <td>{bc icms}</td>
-            <td>{valor icms}</td>
-            <td>{valor ipi}</td>
-            <td>{% icms}</td>
-            <td>{% ipi}</td>
+            <td><%= locals.produtos[i][0].unidade %></td>
+            <td><%= locals.produtos[i][0].quantidade %></td>
+            <td><%= locals.produtos[i][0].preco %></td>
+            <td><%= locals.produtos[i][0].quantidade * locals.produtos[i][0].preco %></td>
+            <td><%= locals.produtos[i][0].quantidade * locals.produtos[i][0].preco %></td>
+            <td>0.00</td>
+            <td>0.00</td>
+            <td>0.00</td>
+            <td>0.00</td>
           </tr>
+          <% }) %>
           <tr>
             <td class="danfe_item_ultimo" colspan="14">&nbsp;</td>
           </tr>
         </table>
 
         <div class="danfe_titulo_externo">Dados adicionais</div>
-        <table class="danfe_tabelas">
+        <table class="danfe_tabelas" id="informacoes_complementares">
           <tr style="min-height: 200px">
             <td class="danfe_celula_bordas" width="70%">
-              <p class="danfe_celula_titulo">Observa&ccedil;&otilde;es</p>
-              <p class="danfe_celula_valor">{OBSERVACOES}</p>
+              <p class="danfe_celula_titulo">INFORMAÇÕES COMPLEMENTARES</p>
+              <p class="danfe_celula_valor">
+                Voce pagou aproximadamente : R$<%= Math.round(totalNFPrice *
+                0.20 * 100) / 100 %> de tributos federais R$<%=
+                Math.round(totalNFPrice * 0.18 * 100) / 100 %> de tributos
+                estaduais Fonte : IBPT
+              </p>
             </td>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">Reservado ao fisco</p>

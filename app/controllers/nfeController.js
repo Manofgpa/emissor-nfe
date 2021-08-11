@@ -10,20 +10,31 @@ import fretes from '../models/fretes.js'
 import paymentMethods from '../models/meioPagamentos.js'
 import formaPagamentos from '../models/formaPagamentos.js'
 import naturezaOperacao from '../models/naturezaOperacao.js'
-
+import { DateTime } from 'luxon'
 
 const __dirname = path.resolve()
 
 const createNfe = (req, res) => {
 
+    // Date set
+    const dt = DateTime.now().setLocale('br'),
+        currentDate = dt.toLocaleString(),
+        currentHour = dt.toLocaleString(DateTime.TIME_WITH_SECONDS)
+
     let totalNFPrice = 0,
         totalNFQuantity = 0,
-        data = req.body,
-        date = new Date()
+        data = req.body
 
     const numNf = Math.floor(100000 + Math.random() * 900000),
-        formattedDate = ((date.getDate())) + '/' + ((date.getMonth() + 1)) + '/' + date.getFullYear(),
-        formattedHour = ((date.getHours()) + ':' + (date.getMinutes()))
+        protocoloAutorizacao = Math.floor(100000000000000 + Math.random() * 900000000000000) + ` ${currentDate} ${currentHour}`
+
+    // Transform products in array if not yet.
+    if (!Array.isArray(data.produtos_quantidade)) {
+        data.produtos_nome = [data.produtos_nome]
+        data.produtos_unidade = [data.produtos_unidade]
+        data.produtos_quantidade = [data.produtos_quantidade]
+        data.produtos_preco = [data.produtos_preco]
+    }
 
     // Get total NF price and quantity
     if (Array.isArray(data.produtos_preco)) {
@@ -35,14 +46,34 @@ const createNfe = (req, res) => {
 
     totalNFPrice = Math.round(totalNFPrice * 100) / 100
 
+    // Invoice payments    
+
+
+
+    // Creates array of products    
+    let produtos = []
+
+    data.produtos_nome.forEach((item, i) => {
+        produtos[i] = [{
+            name: data.produtos_nome[i],
+            quantidade: data.produtos_quantidade[i],
+            preco: data.produtos_preco[i],
+            unidade: data.produtos_unidade[i]
+        }]
+    })
+
     data = {
         ...req.body,
         totalNFQuantity,
         totalNFPrice,
-        formattedDate,
-        formattedHour,
-        numNf
+        currentDate,
+        currentHour,
+        protocoloAutorizacao,
+        numNf,
+        produtos
     }
+
+    console.log(data)
 
     const html = fs.readFileSync(__dirname + '/app/views/pages/nfe.ejs', 'utf8')
     const nfe = ejs.render(html, data)
@@ -60,10 +91,7 @@ const createNfe = (req, res) => {
 
     const validation = validate(data)
 
-    // console.log(validation)
-    // console.log('-----------------')
     if (validation.error) {
-        console.log(validation.error);
         data = {
             ...data,
             errorMessages: validation.error,
@@ -73,10 +101,10 @@ const createNfe = (req, res) => {
             paymentMethods,
             formaPagamentos,
             naturezaOperacao
+
         }
         res.render('pages/generator', data)
         // res.redirect('/emissor')
-        console.log(data)
     }
     else {
         pdf.create(nfe, options).toBuffer((err, data) => {
@@ -87,7 +115,6 @@ const createNfe = (req, res) => {
             }
         })
     }
-    // console.log(data)
 }
 
 export default { createNfe }

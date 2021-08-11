@@ -1,6 +1,5 @@
 
 const modalidades = [
-    { value: "---" },
     { value: "Contratação do Frete por conta do Remetente (CIF)" },
     { value: "Contratação do Frete por conta do Destinatário (FOB)" },
     { value: "Contratação do Frete por conta de Terceiro" },

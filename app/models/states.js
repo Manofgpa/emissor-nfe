@@ -1,6 +1,5 @@
 
 const states = [
-    { uf: "", name: "---" },
     { uf: "AC", name: "Acre" },
     { uf: "AL", name: "Alagoas" },
     { uf: "AP", name: "Amapá" },
