@@ -311,7 +311,7 @@
                 <tr>
                   <td class="danfe_celula_bordas">
                     <p class="danfe_celula_titulo">Endere&ccedil;o</p>
-                    <p class="danfe_celula_valor"><%= cliente_endereco %></p>
+                    <p class="danfe_celula_valor"><%= cliente_endereco + ', ' + cliente_numero + ', ' + cliente_complemento %></p>
                   </td>
                   <td class="danfe_celula_bordas">
                     <p class="danfe_celula_titulo">Bairro</p>
@@ -343,7 +343,7 @@
                 <tr>
                   <td class="danfe_celula_bordas">
                     <p class="danfe_celula_titulo">Data emiss&atilde;o</p>
-                    <p class="danfe_celula_valor"><%= data_nf %></p>
+                    <p class="danfe_celula_valor"><%= currentDate %></p>
                   </td>
                 </tr>
                 <tr>
@@ -382,9 +382,11 @@
             </th>
           </tr>
           <tr class="danfe_item">
-            <td align="left"><%= numNf %>-01</td>
-            <td align="left"></td>
-            <td style="border-right: solid black 1px">{valor}</td>
+            <% invoiceDueDates.forEach((date, i) => { %>
+              <td align="left"><%= numNf %>-0<%= i + 1 %></td>
+              <td align="left"><%= date %></td>
+              <td style="border-right: solid black 1px"><%= invoiceInstallment %></td>
+            <% }) %>
             <!-- <td align="left"><%= numNf %>-02</td>
             <td align="left">{data}</td>
             <td style="border-right: solid black 1px">{valor}</td>
@@ -401,7 +403,7 @@
           <tr>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">Base de c&aacute;lculo do ICMS</p>
-              <p class="danfe_celula_valor"><%= totalNFPrice %></p>
+              <p class="danfe_celula_valor"><%= totalNFPrice.toFixed(2) %></p>
             </td>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">Valor do ICMS</p>
@@ -411,7 +413,7 @@
               <p class="danfe_celula_titulo">
                 Base de c&aacute;lculo do ICMS Subst.
               </p>
-              <p class="danfe_celula_valor"><%= totalNFPrice %></p>
+              <p class="danfe_celula_valor"><%= totalNFPrice.toFixed(2) %></p>
             </td>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">Valor do ICMS Subst.</p>
@@ -419,7 +421,7 @@
             </td>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">Valor total dos produtos</p>
-              <p class="danfe_celula_valor"><%= totalNFPrice %></p>
+              <p class="danfe_celula_valor"><%= totalNFPrice.toFixed(2) %></p>
             </td>
           </tr>
         </table>
@@ -427,11 +429,11 @@
           <tr>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">Valor do frete</p>
-              <p class="danfe_celula_valor"><%= total_frete %></p>
+              <p class="danfe_celula_valor"><%= Number(total_frete).toFixed(2) %></p>
             </td>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">Valor do seguro</p>
-              <p class="danfe_celula_valor"><%= valor_seguro %></p>
+              <p class="danfe_celula_valor"><%= Number(valor_seguro).toFixed(2) %></p>
             </td>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">Desconto</p>
@@ -530,11 +532,11 @@
             </td>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">Peso bruto</p>
-              <p class="danfe_celula_valor"><%= peso_bruto %></p>
+              <p class="danfe_celula_valor"><%= peso_bruto %> KG</p>
             </td>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">Peso l&iacute;quido</p>
-              <p class="danfe_celula_valor"><%= peso_liquido %></p>
+              <p class="danfe_celula_valor"><%= peso_liquido %> KG</p>
             </td>
           </tr>
         </table>
@@ -561,16 +563,16 @@
           <!-- prettier-ignore -->
           <% produtos.forEach((produtos, i) =>{ %>
           <tr class="danfe_item">
-            <td align="left" style="padding-bottom: 8px; vertical-align: middle;">{codigo}</td>
+            <td align="left" style="padding-bottom: 8px; vertical-align: middle;"><%= locals.produtos[i][0].id %></td>
             <td align="left"><%= locals.produtos[i][0].name %></td>
-            <td>{ncm}</td>
-            <td>{cst}</td>
-            <td>{cfop}</td>
+            <td>96039000</td>
+            <td>100</td>
+            <td>5405</td>
             <td><%= locals.produtos[i][0].unidade %></td>
             <td><%= locals.produtos[i][0].quantidade %></td>
             <td><%= locals.produtos[i][0].preco %></td>
-            <td><%= locals.produtos[i][0].quantidade * locals.produtos[i][0].preco %></td>
-            <td><%= locals.produtos[i][0].quantidade * locals.produtos[i][0].preco %></td>
+            <td><%= (locals.produtos[i][0].quantidade * locals.produtos[i][0].preco).toFixed(2) %></td>
+            <td><%= (locals.produtos[i][0].quantidade * locals.produtos[i][0].preco).toFixed(2) %></td>
             <td>0.00</td>
             <td>0.00</td>
             <td>0.00</td>

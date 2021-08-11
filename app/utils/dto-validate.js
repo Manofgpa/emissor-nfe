@@ -9,7 +9,10 @@ export default (data) => {
             .messages({
                 'date.base': 'O campo "Data" deve ser preenchido.'
             }),
-        tipo_operacao: joi.string(),
+        tipo_operacao: joi.string().required()
+        .messages({
+            'any.required': 'O campo "Natureza de Operação" é obrigatório'
+        }),
         tipo_cliente: joi.string(),
         cliente_nome_completo: joi.string()
             .min(3)
@@ -142,7 +145,9 @@ export default (data) => {
         currentHour: joi.string(),
         currentDate: joi.string(),
         protocoloAutorizacao: joi.string(),
-        produtos: joi.array()
+        produtos: joi.array(),
+        invoiceDueDates: joi.array(),
+        invoiceInstallment: joi.string()
     })
 
     return schema.validate(data, { abortEarly: false })

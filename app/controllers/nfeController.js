@@ -11,6 +11,8 @@ import paymentMethods from '../models/meioPagamentos.js'
 import formaPagamentos from '../models/formaPagamentos.js'
 import naturezaOperacao from '../models/naturezaOperacao.js'
 import { DateTime } from 'luxon'
+import invoiceDateGenerator from '../utils/invoiceDateGenerator.js'
+import createProductID from '../utils/createProductID.js'
 
 const __dirname = path.resolve()
 
@@ -44,17 +46,20 @@ const createNfe = (req, res) => {
         })
     }
 
-    totalNFPrice = Math.round(totalNFPrice * 100) / 100
+    totalNFPrice.toFixed(2)
 
-    // Invoice payments    
-
-
+    // Invoice payments
+    const invoiceDueDates = invoiceDateGenerator(data.pagamento)
+    const invoiceInstallment = (totalNFPrice / data.pagamento).toFixed(2)
 
     // Creates array of products    
     let produtos = []
+    const productsIDs = createProductID(data.produtos_nome.length)
+
 
     data.produtos_nome.forEach((item, i) => {
         produtos[i] = [{
+            id: productsIDs[i],
             name: data.produtos_nome[i],
             quantidade: data.produtos_quantidade[i],
             preco: data.produtos_preco[i],
@@ -70,10 +75,13 @@ const createNfe = (req, res) => {
         currentHour,
         protocoloAutorizacao,
         numNf,
-        produtos
+        produtos,
+        invoiceDueDates,
+        invoiceInstallment
     }
 
-    console.log(data)
+    console.log(data.produtos)
+
 
     const html = fs.readFileSync(__dirname + '/app/views/pages/nfe.ejs', 'utf8')
     const nfe = ejs.render(html, data)
@@ -101,8 +109,8 @@ const createNfe = (req, res) => {
             paymentMethods,
             formaPagamentos,
             naturezaOperacao
-
         }
+
         res.render('pages/generator', data)
         // res.redirect('/emissor')
     }
