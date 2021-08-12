@@ -14,11 +14,12 @@ import { DateTime } from 'luxon'
 import invoiceDateGenerator from '../utils/invoiceDateGenerator.js'
 import createProductID from '../utils/createProductID.js'
 
+
 const __dirname = path.resolve()
 
 const createNfe = (req, res) => {
 
-    // Date set
+    // Set dates
     const dt = DateTime.now().setLocale('br'),
         currentDate = dt.toLocaleString(),
         currentHour = dt.toLocaleString(DateTime.TIME_WITH_SECONDS)
@@ -80,8 +81,7 @@ const createNfe = (req, res) => {
         invoiceInstallment
     }
 
-    console.log(data.produtos)
-
+    console.log(data)
 
     const html = fs.readFileSync(__dirname + '/app/views/pages/nfe.ejs', 'utf8')
     const nfe = ejs.render(html, data)

@@ -2,6 +2,8 @@
 <html lang="en">
   <head>
     <%- include('../include/head') %>
+    <script src="https://unpkg.com/imask@6.1.0/dist/imask.js"></script>
+    <script src="./js/IMask.js"></script>
     <title>Emissor de NFe - Emissor</title>
     <style>
       #aemissor {
@@ -103,6 +105,7 @@
                       name="cliente_cpf"
                       placeholder="___.___.___-__"
                       class="form-control"
+                      id="cliente_cpf"
                       value="<%= locals.cliente_cpf ? locals.cliente_cpf : '' %>"
                     />
                   </div>
@@ -130,6 +133,7 @@
                     ><input
                       type="text"
                       name="cliente_cep"
+                      id="cliente_cep"
                       placeholder="_____-___"
                       class="form-control"
                       value="<%= locals.cliente_cep ? locals.cliente_cep : '' %>"
@@ -212,6 +216,7 @@
                       type="text"
                       name="cliente_telefone"
                       placeholder="(__) ____-____"
+                      id="cliente_telefone"
                       class="form-control"
                       value="<%= locals.cliente_telefone ? locals.cliente_telefone : '' %>"
                     />
@@ -316,7 +321,7 @@
                       type="button"
                       id="update_total"
                       class="botao form-control"
-                      value="Atualizar Valor Total"
+                      value="Atualizar Total"
                     />
                   </td>
                   <td>
@@ -377,6 +382,7 @@
                         name="valor_pagamento"
                         class="form-control"
                         placeholder="R$"
+                        id="valor_pagamento"
                         value="<%= locals.valor_pagamento? locals.valor_pagamento: '' %>"
                       />
                     </div>
@@ -473,6 +479,7 @@
                     name="placa_veiculo"
                     placeholder="XXX-000"
                     class="form-control"
+                    id="placa_veiculo"
                     value="<%= locals.placa_veiculo ? locals.placa_veiculo : '' %>"
                   />
                 </div>

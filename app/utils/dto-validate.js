@@ -10,9 +10,9 @@ export default (data) => {
                 'date.base': 'O campo "Data" deve ser preenchido.'
             }),
         tipo_operacao: joi.string().required()
-        .messages({
-            'any.required': 'O campo "Natureza de Operação" é obrigatório'
-        }),
+            .messages({
+                'any.required': 'O campo "Natureza de Operação" é obrigatório'
+            }),
         tipo_cliente: joi.string(),
         cliente_nome_completo: joi.string()
             .min(3)
@@ -25,17 +25,14 @@ export default (data) => {
                 'string.min': 'O campo "Nome" deve conter no mínimo {#limit} caracteres.',
                 'any.required': 'O campo "Nome" é obrigatório.'
             }),
-        cliente_cpf: joi.number()
+        cliente_cpf: joi.string()
             .required()
-            .integer()
-            .min(11111111111)
-            .max(99999999999)
+            .pattern(new RegExp(/^[0-9.-]*$/))
             .messages({
-                'number.empty': 'O campo "CPF" é obrigatório.',
-                'number.required': 'O campo "CPF" é obrigatório.',
-                'number.base': 'O campo "CPF" deve conter apenas números.',
-                'number.min': 'O campo "CPF" deve conter 11 digitos.',
-                'number.max': 'O campo "CPF" deve conter 11 digitos.'
+                'string.pattern.base': 'O campo "CPF" deve conter apenas números e espaço.',
+                'string.empty': 'O campo "CPF" é obrigatório.',
+                'string.required': 'O campo "CPF" é obrigatório.',
+                'string.base': 'O campo "CPF" deve conter apenas números.'
             }),
         cliente_ie: joi.string(),
         consumidor_final: joi.number()
@@ -47,8 +44,8 @@ export default (data) => {
             }),
         cliente_cep: joi.string()
             .required()
-            .length(8)
-            .pattern(new RegExp(/^[0-9]*$/))
+            .length(9)
+            .pattern(new RegExp(/^[0-9.-]*$/))
             .messages({
                 'string.pattern.base': 'O campo "CEP" deve conter apenas números.',
                 'string.length': 'O campo "CEP" deve conter 8 números.',
@@ -100,11 +97,11 @@ export default (data) => {
                 'string.email': 'O campo "E-mail" inválido.',
                 'string.empty': 'O campo "E-mail" é obrigatório'
             }),
-        cliente_telefone: joi.number()
+        cliente_telefone: joi.string()
             .required()
             .messages({
-                'number.base': 'O campo "Telefone" deve conter apenas números.',
-                'number.required': 'O campo "Telefone" é obrigatório.'
+                'string.base': 'O campo "Telefone" deve conter apenas números.',
+                'string.required': 'O campo "Telefone" é obrigatório.'
             }),
         produtos_nome: joi.array()
             .items(joi.string().required())
@@ -127,10 +124,10 @@ export default (data) => {
                 'number.empty': 'O campo "Produto Preço" é obrigatório.',
             }),
         pagamento: joi.string(),
-        valor_pagamento: joi.number(),
+        valor_pagamento: joi.string(),
         modalidade_frete: joi.string(),
         forma_envio: joi.string(),
-        total_frete: joi.string(),
+        total_frete: joi.number(),
         valor_seguro: joi.number(),
         peso_bruto: joi.number(),
         peso_liquido: joi.number(),
@@ -139,7 +136,7 @@ export default (data) => {
         numeracao: joi.number(),
         lacres: joi.string(),
         numNf: joi.number(),
-        forma_pagamento: joi.string(),
+        forma_pagamento: joi.string().required(),
         totalNFQuantity: joi.number(),
         totalNFPrice: joi.number(),
         currentHour: joi.string(),
