@@ -81,7 +81,7 @@ const createNfe = (req, res) => {
         invoiceInstallment
     }
 
-    console.log(data)
+    // console.log(data)
 
     const html = fs.readFileSync(__dirname + '/app/views/pages/nfe.ejs', 'utf8')
     const nfe = ejs.render(html, data)
@@ -98,6 +98,7 @@ const createNfe = (req, res) => {
     }
 
     const validation = validate(data)
+    console.log(validation.error)
 
     if (validation.error) {
         data = {

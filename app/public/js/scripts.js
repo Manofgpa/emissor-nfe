@@ -27,13 +27,45 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     })
 
-    function stopDefAction(evt) {
-        evt.preventDefault();
-    }
 
-    // document.getElementById('emitirnf').addEventListener('click', stopDefAction, false)
+    // Via CEP autocomplete
+
+    document.getElementById('cliente_cep').addEventListener('change', () => {
+
+        const userCep = document.getElementById('cliente_cep').value.replace('-', ''),
+            viaCepUrl = 'https://viacep.com.br/ws/',
+            returnFormat = '/json/'
+        userAddress = document.getElementById('cliente_endereco'),
+            userComplement = document.getElementById('cliente_complemento'),
+            userCity = document.getElementById('cliente_cidade'),
+            userNeighborhood = document.getElementById('cliente_bairro'),
+            userState = document.getElementById('cliente_uf')
 
 
+        fetch(viaCepUrl + userCep + returnFormat)
+            .then((res) => res.json())
+            .then((data) => {
+
+                if (data.erro === true) {
+
+                    alert('O CEP informado não é válido.')
+                    document.getElementById('cliente_cep').value = ''
+                    document.getElementById('cliente_endereco').value = ''
+                    document.getElementById('cliente_complemento').value = ''
+                    document.getElementById('cliente_cidade').value = ''
+                    document.getElementById('cliente_bairro').value = ''
+                    document.getElementById('cliente_uf').value = '---'
+                }
+                else {
+
+                    document.getElementById('cliente_endereco').value = data.logradouro
+                    document.getElementById('cliente_complemento').value = data.complemento
+                    document.getElementById('cliente_cidade').value = data.localidade
+                    document.getElementById('cliente_bairro').value = data.bairro
+                    document.getElementById('cliente_uf').value = data.uf
+                }
+            })
+    })
 })
 
 // Update subtotal products

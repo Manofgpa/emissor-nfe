@@ -31,8 +31,8 @@ export default (data) => {
                 'string.required': 'O campo "CPF" é obrigatório.',
                 'string.base': 'O campo "CPF" deve conter apenas números.'
             }),
-        cliente_ie: joi.any().allow(),
-        consumidor_final: joi.number()
+        cliente_ie: joi.any().allow(''),
+        consumidor_final: joi.number().allow('')
             .max(1)
             .min(1)
             .messages({
@@ -62,7 +62,7 @@ export default (data) => {
                 'number.empty': 'O campo "Número" é obrigatório.',
                 'number.max': 'O campo "Número" está incorreto.'
             }),
-        cliente_complemento: joi.any().allow(),
+        cliente_complemento: joi.any().allow(''),
         cliente_bairro: joi.string()
             .max(30)
             .required()
@@ -103,7 +103,8 @@ export default (data) => {
             .items(joi.string().required())
             .messages({
                 'string.base': 'O campo "Produto Nome" é obrigatório.',
-                'string.empty': 'O campo "Produto Nome" é obrigatório.'
+                'string.empty': 'O campo "Produto Nome" é obrigatório.',
+                'array.includesRequiredUnknowns': ''
             }),
         produtos_unidade: joi.array()
             .items(joi.string()),
@@ -120,17 +121,17 @@ export default (data) => {
                 'number.empty': 'O campo "Produto Preço" é obrigatório.',
             }),
         pagamento: joi.string(),
-        valor_pagamento: joi.any().allow(),
-        modalidade_frete: joi.any().allow(),
-        forma_envio: joi.any().allow(),
-        total_frete: joi.any().allow(),
-        valor_seguro: joi.any().allow(),
-        peso_bruto: joi.any().allow(),
-        peso_liquido: joi.any().allow(),
-        placa_veiculo: joi.any().allow(),
-        especie: joi.any().allow(),
-        numeracao: joi.any().allow(),
-        lacres: joi.any().allow(),
+        valor_pagamento: joi.any().allow(''),
+        modalidade_frete: joi.any().allow(''),
+        forma_envio: joi.any().allow(''),
+        total_frete: joi.any().allow(''),
+        valor_seguro: joi.any().allow(''),
+        peso_bruto: joi.any().allow(''),
+        peso_liquido: joi.any().allow(''),
+        placa_veiculo: joi.any().allow(''),
+        especie: joi.any().allow(''),
+        numeracao: joi.any().allow(''),
+        lacres: joi.any().allow(''),
         numNf: joi.number(),
         forma_pagamento: joi.string().required()
             .messages({

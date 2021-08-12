@@ -19,8 +19,8 @@
       <form action="/nfe" method="post" id="mainform">
         <div id="emissor" class="row">
           <div>
-            <div class="errors">
-              <div>
+            <div>
+              <div class="errors">
                 <% if (locals.errorMessages) { %> <%
                 errorMessages.details.forEach((error) => { %>
                 <p class="error"><%= error.message %></p>
@@ -38,7 +38,8 @@
                   id="data"
                   name="data_nf"
                   class="headinputs"
-                  min="1997-01-01" max="2030-12-31"
+                  min="1997-01-01"
+                  max="2030-12-31"
                   value="<%= locals.data_nf ? locals.data_nf : '' %>"
                 />
                 <label for="tipo_operacao" class="label"
@@ -82,7 +83,9 @@
                 <div class="row row--no-margin">
                   <div class="col-md-4">
                     <label class="field-label"
-                      >Nome Completo<span class="field-required">*</span></label
+                      >Nome Completo / Razão Social<span class="field-required"
+                        >*</span
+                      ></label
                     >
                     <div>
                       <input
@@ -97,15 +100,14 @@
                   </div>
                   <div class="col-md-3">
                     <label class="field-label"
-                      >CPF/CNPJ<span class="field-required"
-                        >* apenas números</span
-                      ></label
+                      >CPF / CNPJ<span class="field-required">*</span></label
                     ><input
                       type="text"
                       name="cliente_cpf"
                       placeholder="___.___.___-__"
                       class="form-control"
                       id="cliente_cpf"
+                      required
                       value="<%= locals.cliente_cpf ? locals.cliente_cpf : '' %>"
                     />
                   </div>
@@ -136,6 +138,7 @@
                       id="cliente_cep"
                       placeholder="_____-___"
                       class="form-control"
+                      required
                       value="<%= locals.cliente_cep ? locals.cliente_cep : '' %>"
                     />
                   </div>
@@ -145,7 +148,9 @@
                     ><input
                       type="text"
                       name="cliente_endereco"
+                      id="cliente_endereco"
                       class="form-control"
+                      required
                       value="<%= locals.cliente_endereco ? locals.cliente_endereco : '' %>"
                     />
                   </div>
@@ -156,6 +161,7 @@
                       type="text"
                       name="cliente_numero"
                       class="form-control"
+                      required
                       value="<%= locals.cliente_numero ? locals.cliente_numero : '' %>"
                     />
                   </div>
@@ -164,6 +170,7 @@
                     ><input
                       type="text"
                       name="cliente_complemento"
+                      id="cliente_complemento"
                       class="form-control"
                       value="<%= locals.cliente_complemento ? locals.cliente_complemento : '' %>"
                     />
@@ -174,7 +181,9 @@
                     ><input
                       type="text"
                       name="cliente_bairro"
+                      id="cliente_bairro"
                       class="form-control"
+                      required
                       value="<%= locals.cliente_bairro ? locals.cliente_bairro : '' %>"
                     />
                   </div>
@@ -184,7 +193,9 @@
                     ><input
                       type="text"
                       name="cliente_cidade"
+                      id="cliente_cidade"
                       class="form-control"
+                      required
                       value="<%= locals.cliente_cidade ? locals.cliente_cidade : '' %>"
                     />
                   </div>
@@ -192,7 +203,11 @@
                     <label class="field-label"
                       >Estado <span class="field-required">*</span></label
                     >
-                    <select name="cliente_uf" class="form-control">
+                    <select
+                      name="cliente_uf"
+                      id="cliente_uf"
+                      class="form-control"
+                    >
                       <option selected="true" disabled="disabled">---</option>
                       <% states.forEach(states => { %>
                       <option value="<%= states.uf %>">
@@ -304,7 +319,7 @@
                     <input
                       type="button"
                       id="addproduct"
-                      class="botao form-control"
+                      class="botao form-control btn btn-success"
                       value="Adicionar Produto"
                     />
                   </td>
@@ -312,7 +327,7 @@
                     <input
                       type="button"
                       id="removeproduct"
-                      class="botao form-control"
+                      class="botao form-control btn btn-success"
                       value="Remover Produto"
                     />
                   </td>
@@ -320,7 +335,7 @@
                     <input
                       type="button"
                       id="update_total"
-                      class="botao form-control"
+                      class="botao form-control btn btn-success"
                       value="Atualizar Total"
                     />
                   </td>
@@ -328,7 +343,7 @@
                     <input
                       type="button"
                       id="clear_values"
-                      class="botao form-control"
+                      class="botao form-control btn btn-success"
                       value="Limpar Campos"
                     />
                   </td>
@@ -353,7 +368,9 @@
               <div>
                 <div class="row row--no-margin">
                   <div class="col-md-4">
-                    <label class="field-label">Meio de pagamento </label
+                    <label class="field-label"
+                      >Meio de pagamento
+                      <span class="field-required">* </span></label
                     ><select name="forma_pagamento" class="form-control">
                       <option selected="true" disabled="disabled">---</option>
                       <% paymentMethods.forEach(method => { %>
@@ -364,7 +381,10 @@
                     </select>
                   </div>
                   <div class="col-md-4">
-                    <label class="field-label">Forma de pagamento</label
+                    <label class="field-label"
+                      >Forma de pagamento<span class="field-required"
+                        >*
+                      </span></label
                     ><select name="pagamento" class="form-control">
                       <option selected="true" disabled="disabled">---</option>
                       <% formaPagamentos.forEach(forma => { %>
@@ -425,9 +445,7 @@
                 </div>
                 <div class="col-md-12" style="margin-bottom: 0px"></div>
                 <div class="col-md-3">
-                  <label class="field-label"
-                    >Total frete<span class="field-required">* </span></label
-                  >
+                  <label class="field-label">Total frete</label>
                   <div class="input-group">
                     <input
                       type="text"
@@ -515,7 +533,7 @@
                 type="submit"
                 form="mainform"
                 id="emitirnf"
-                class="form-control emitirnf"
+                class="form-control btn btn-success"
               >
                 Emitir Nota Fiscal
               </button>
