@@ -5,10 +5,7 @@ import joi from 'joi'
 export default (data) => {
 
     const schema = joi.object({
-        data_nf: joi.date()
-            .messages({
-                'date.base': 'O campo "Data" deve ser preenchido.'
-            }),
+        data_nf: joi.any().allow(''),
         tipo_operacao: joi.string().required()
             .messages({
                 'any.required': 'O campo "Natureza de Operação" é obrigatório'
@@ -34,7 +31,7 @@ export default (data) => {
                 'string.required': 'O campo "CPF" é obrigatório.',
                 'string.base': 'O campo "CPF" deve conter apenas números.'
             }),
-        cliente_ie: joi.string(),
+        cliente_ie: joi.any().allow(),
         consumidor_final: joi.number()
             .max(1)
             .min(1)
@@ -65,8 +62,7 @@ export default (data) => {
                 'number.empty': 'O campo "Número" é obrigatório.',
                 'number.max': 'O campo "Número" está incorreto.'
             }),
-        cliente_complemento: joi.string()
-            .max(30),
+        cliente_complemento: joi.any().allow(),
         cliente_bairro: joi.string()
             .max(30)
             .required()
@@ -124,19 +120,24 @@ export default (data) => {
                 'number.empty': 'O campo "Produto Preço" é obrigatório.',
             }),
         pagamento: joi.string(),
-        valor_pagamento: joi.string(),
-        modalidade_frete: joi.string(),
-        forma_envio: joi.string(),
-        total_frete: joi.number(),
-        valor_seguro: joi.number(),
-        peso_bruto: joi.number(),
-        peso_liquido: joi.number(),
-        placa_veiculo: joi.string(),
-        especie: joi.string(),
-        numeracao: joi.number(),
-        lacres: joi.string(),
+        valor_pagamento: joi.any().allow(),
+        modalidade_frete: joi.any().allow(),
+        forma_envio: joi.any().allow(),
+        total_frete: joi.any().allow(),
+        valor_seguro: joi.any().allow(),
+        peso_bruto: joi.any().allow(),
+        peso_liquido: joi.any().allow(),
+        placa_veiculo: joi.any().allow(),
+        especie: joi.any().allow(),
+        numeracao: joi.any().allow(),
+        lacres: joi.any().allow(),
         numNf: joi.number(),
-        forma_pagamento: joi.string().required(),
+        forma_pagamento: joi.string().required()
+            .messages({
+                'string.base': 'O campo "Forma de Pagamento" é obrigatório.',
+                'string.empty': 'O campo "Forma de Pagamento" é obrigatório.',
+                'any.required': 'O campo "Forma de Pagamento" é obrigatório.'
+            }),
         totalNFQuantity: joi.number(),
         totalNFPrice: joi.number(),
         currentHour: joi.string(),
