@@ -1,5 +1,11 @@
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    var inputMasks = []
+
+    // var elements = document.querySelectorAll("#cliente_cpf, #cliente_cep, #cliente_telefone, #placa_veiculo")
+    // console.log(elements)
+
     var element = document.getElementById('cliente_cpf')
     var CPFMask = IMask(element, {
         mask: [
@@ -21,7 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
     var telephoneMask = IMask(element, { mask: '+55 (00) 00000-0000' })
 
     element = document.getElementById('placa_veiculo')
-    var telephoneMask = IMask(element, { mask: 'aaa-0000', })
+    var placaMask = IMask(element, { mask: 'aaa-0000', })
 
-
+    // document.getElementById('clear_values').addEventListener('click', () => {
+    //     inputMasks.forEach((element) => {
+    //         element.el['input'].value = element.unmaskedValue
+    //     })
+    // })
 })

@@ -311,7 +311,10 @@
                 <tr>
                   <td class="danfe_celula_bordas">
                     <p class="danfe_celula_titulo">Endere&ccedil;o</p>
-                    <p class="danfe_celula_valor"><%= cliente_endereco + ', ' + cliente_numero + ', ' + cliente_complemento %></p>
+                    <p class="danfe_celula_valor">
+                      <%= cliente_endereco + ', ' + cliente_numero + ', ' +
+                      cliente_complemento %>
+                    </p>
                   </td>
                   <td class="danfe_celula_bordas">
                     <p class="danfe_celula_titulo">Bairro</p>
@@ -383,9 +386,11 @@
           </tr>
           <tr class="danfe_item">
             <% invoiceDueDates.forEach((date, i) => { %>
-              <td align="left"><%= numNf %>-0<%= i + 1 %></td>
-              <td align="left"><%= date %></td>
-              <td style="border-right: solid black 1px"><%= invoiceInstallment %></td>
+            <td align="left"><%= numNf %>-0<%= i + 1 %></td>
+            <td align="left"><%= date %></td>
+            <td style="border-right: solid black 1px">
+              <%= invoiceInstallment %>
+            </td>
             <% }) %>
             <!-- <td align="left"><%= numNf %>-02</td>
             <td align="left">{data}</td>
@@ -429,11 +434,15 @@
           <tr>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">Valor do frete</p>
-              <p class="danfe_celula_valor"><%= Number(total_frete).toFixed(2) %></p>
+              <p class="danfe_celula_valor">
+                <%= Number(total_frete).toFixed(2) %>
+              </p>
             </td>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">Valor do seguro</p>
-              <p class="danfe_celula_valor"><%= Number(valor_seguro).toFixed(2) %></p>
+              <p class="danfe_celula_valor">
+                <%= Number(valor_seguro).toFixed(2) %>
+              </p>
             </td>
             <td class="danfe_celula_bordas">
               <p class="danfe_celula_titulo">Desconto</p>
@@ -563,7 +572,12 @@
           <!-- prettier-ignore -->
           <% produtos.forEach((produtos, i) =>{ %>
           <tr class="danfe_item">
-            <td align="left" style="padding-bottom: 8px; vertical-align: middle;"><%= locals.produtos[i][0].id %></td>
+            <td
+              align="left"
+              style="padding-bottom: 8px; vertical-align: middle"
+            >
+              <%= locals.produtos[i][0].id %>
+            </td>
             <td align="left"><%= locals.produtos[i][0].name %></td>
             <td>96039000</td>
             <td>100</td>
@@ -571,8 +585,14 @@
             <td><%= locals.produtos[i][0].unidade %></td>
             <td><%= locals.produtos[i][0].quantidade %></td>
             <td><%= locals.produtos[i][0].preco %></td>
-            <td><%= (locals.produtos[i][0].quantidade * locals.produtos[i][0].preco).toFixed(2) %></td>
-            <td><%= (locals.produtos[i][0].quantidade * locals.produtos[i][0].preco).toFixed(2) %></td>
+            <td>
+              <%= (locals.produtos[i][0].quantidade *
+              locals.produtos[i][0].preco).toFixed(2) %>
+            </td>
+            <td>
+              <%= (locals.produtos[i][0].quantidade *
+              locals.produtos[i][0].preco).toFixed(2) %>
+            </td>
             <td>0.00</td>
             <td>0.00</td>
             <td>0.00</td>

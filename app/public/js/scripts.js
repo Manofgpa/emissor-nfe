@@ -27,20 +27,20 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     })
 
-
     // Via CEP autocomplete
 
     document.getElementById('cliente_cep').addEventListener('change', () => {
 
         const userCep = document.getElementById('cliente_cep').value.replace('-', ''),
             viaCepUrl = 'https://viacep.com.br/ws/',
-            returnFormat = '/json/'
-        userAddress = document.getElementById('cliente_endereco'),
-            userComplement = document.getElementById('cliente_complemento'),
-            userCity = document.getElementById('cliente_cidade'),
-            userNeighborhood = document.getElementById('cliente_bairro'),
-            userState = document.getElementById('cliente_uf')
-
+            returnFormat = '/json/',
+            userInfoArray = [
+                document.getElementById('cliente_endereco'),
+                document.getElementById('cliente_complemento'),
+                document.getElementById('cliente_cidade'),
+                document.getElementById('cliente_bairro'),
+                document.getElementById('cliente_uf')
+            ]
 
         fetch(viaCepUrl + userCep + returnFormat)
             .then((res) => res.json())
@@ -49,12 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (data.erro === true) {
 
                     alert('O CEP informado não é válido.')
-                    document.getElementById('cliente_cep').value = ''
-                    document.getElementById('cliente_endereco').value = ''
-                    document.getElementById('cliente_complemento').value = ''
-                    document.getElementById('cliente_cidade').value = ''
-                    document.getElementById('cliente_bairro').value = ''
-                    document.getElementById('cliente_uf').value = '---'
+                    userInfoArray.forEach(element => {
+                        element.value = ''
+                    })
                 }
                 else {
 

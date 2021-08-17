@@ -1,6 +1,5 @@
 import joi from 'joi'
 
-
 // Joi validation
 export default (data) => {
 
