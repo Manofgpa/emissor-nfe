@@ -4,7 +4,7 @@ import pdf from "html-pdf"
 import ejs from 'ejs'
 import { DateTime } from 'luxon'
 import invoiceDateGenerator from '../utils/invoiceDateGenerator.js'
-import productsArray from '../utils/formatToArray.js'
+
 
 const __dirname = path.resolve()
 
@@ -28,14 +28,12 @@ const createNfe = (req, res) => {
             totalNFPrice = Number(totalNFPrice) + (Number(data.produtos_preco[i]) * Number(data.produtos_quantidade[i]))
             totalNFQuantity = Number(totalNFQuantity) + Number(data.produtos_quantidade[i])
         })
+        totalNFPrice.toFixed(2)
     }
-
-    totalNFPrice.toFixed(2)
 
     // Invoice payments
     const invoiceDueDates = invoiceDateGenerator(data.pagamento)
     const invoiceInstallment = (totalNFPrice / data.pagamento).toFixed(2)
-    const produtos = productsArray(data)
 
     data = {
         ...req.body,
@@ -48,8 +46,6 @@ const createNfe = (req, res) => {
         invoiceDueDates,
         invoiceInstallment
     }
-
-    // console.log(JSON.stringify(data, null, 4));
 
     const html = fs.readFileSync(__dirname + '/app/views/pages/nfe.ejs', 'utf8')
     const nfe = ejs.render(html, data)
