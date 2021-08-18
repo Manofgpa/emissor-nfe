@@ -7,7 +7,17 @@ import naturezaOperacao from '../models/naturezaOperacao.js'
 
 
 const getGenerator = (req, res) => {
-    res.render('pages/generator', { states, modalidades, fretes, paymentMethods, formaPagamentos, naturezaOperacao })
+    const data = {
+        ...req.body,
+        states,
+        modalidades,
+        fretes,
+        paymentMethods,
+        formaPagamentos,
+        naturezaOperacao
+    }
+
+    res.render('pages/generator', data)
 }
 
 export default { getGenerator }

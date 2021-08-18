@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from "path"
 import pdf from "html-pdf"
 import ejs from 'ejs'
-import validate from '../utils/dto-validate.js'
+import validate from '../utils/dtoValidate.js'
 import generatorRoutes from '../routes/v1/generatorRoutes.js'
 import states from '../models/states.js'
 import modalidades from '../models/modalidades.js'
@@ -13,6 +13,7 @@ import naturezaOperacao from '../models/naturezaOperacao.js'
 import { DateTime } from 'luxon'
 import invoiceDateGenerator from '../utils/invoiceDateGenerator.js'
 import createProductID from '../utils/createProductID.js'
+import getGenerator from '../controllers/generatorController.js'
 
 
 const __dirname = path.resolve()
@@ -80,8 +81,6 @@ const createNfe = (req, res) => {
         invoiceInstallment
     }
 
-    console.log(data)
-
     const html = fs.readFileSync(__dirname + '/app/views/pages/nfe.ejs', 'utf8')
     const nfe = ejs.render(html, data)
 
@@ -96,32 +95,13 @@ const createNfe = (req, res) => {
         }
     }
 
-    const validation = validate(data)
-    console.log(validation.error)
-
-    if (validation.error) {
-        data = {
-            ...data,
-            errorMessages: validation.error,
-            states,
-            modalidades,
-            fretes,
-            paymentMethods,
-            formaPagamentos,
-            naturezaOperacao
+    pdf.create(nfe, options).toBuffer((err, data) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.contentType('application/pdf').send(data)
         }
-
-        res.render('pages/generator', data)
-    }
-    else {
-        pdf.create(nfe, options).toBuffer((err, data) => {
-            if (err) {
-                res.send(err)
-            } else {
-                res.contentType('application/pdf').send(data)
-            }
-        })
-    }
+    })
 }
 
 export default { createNfe }
