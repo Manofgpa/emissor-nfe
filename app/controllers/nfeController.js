@@ -2,19 +2,9 @@ import fs from 'fs'
 import path from "path"
 import pdf from "html-pdf"
 import ejs from 'ejs'
-import validate from '../utils/dtoValidate.js'
-import generatorRoutes from '../routes/v1/generatorRoutes.js'
-import states from '../models/states.js'
-import modalidades from '../models/modalidades.js'
-import fretes from '../models/fretes.js'
-import paymentMethods from '../models/meioPagamentos.js'
-import formaPagamentos from '../models/formaPagamentos.js'
-import naturezaOperacao from '../models/naturezaOperacao.js'
 import { DateTime } from 'luxon'
 import invoiceDateGenerator from '../utils/invoiceDateGenerator.js'
-import createProductID from '../utils/createProductID.js'
-import getGenerator from '../controllers/generatorController.js'
-
+import productsArray from '../utils/formatToArray.js'
 
 const __dirname = path.resolve()
 
@@ -32,14 +22,6 @@ const createNfe = (req, res) => {
     const numNf = Math.floor(100000 + Math.random() * 900000),
         protocoloAutorizacao = Math.floor(100000000000000 + Math.random() * 900000000000000) + ` ${currentDate} ${currentHour}`
 
-    // Transform products in array if not yet.
-    if (!Array.isArray(data.produtos_quantidade)) {
-        data.produtos_nome = [data.produtos_nome]
-        data.produtos_unidade = [data.produtos_unidade]
-        data.produtos_quantidade = [data.produtos_quantidade]
-        data.produtos_preco = [data.produtos_preco]
-    }
-
     // Get total NF price and quantity
     if (Array.isArray(data.produtos_preco)) {
         data.produtos_preco.forEach((v, i) => {
@@ -53,20 +35,7 @@ const createNfe = (req, res) => {
     // Invoice payments
     const invoiceDueDates = invoiceDateGenerator(data.pagamento)
     const invoiceInstallment = (totalNFPrice / data.pagamento).toFixed(2)
-
-    // Creates array of products    
-    let produtos = []
-    const productsIDs = createProductID(data.produtos_nome.length)
-
-    data.produtos_nome.forEach((item, i) => {
-        produtos[i] = [{
-            id: productsIDs[i],
-            name: data.produtos_nome[i],
-            quantidade: data.produtos_quantidade[i],
-            preco: data.produtos_preco[i],
-            unidade: data.produtos_unidade[i]
-        }]
-    })
+    const produtos = productsArray(data)
 
     data = {
         ...req.body,
@@ -76,10 +45,11 @@ const createNfe = (req, res) => {
         currentHour,
         protocoloAutorizacao,
         numNf,
-        produtos,
         invoiceDueDates,
         invoiceInstallment
     }
+
+    // console.log(JSON.stringify(data, null, 4));
 
     const html = fs.readFileSync(__dirname + '/app/views/pages/nfe.ejs', 'utf8')
     const nfe = ejs.render(html, data)

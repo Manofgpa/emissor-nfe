@@ -82,7 +82,7 @@ const schema = joi.object({
         .messages({
             'string.base': 'O campo "UF" é obrigatório.',
             'string.empty': 'O campo "UF" é obrigatório.',
-            'any.required': 'O campo UF é obrigatório.'
+            'any.required': 'O campo "UF" é obrigatório.'
         }),
     cliente_email: joi.string()
         .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net', 'br', 'edu'] } })
@@ -99,8 +99,8 @@ const schema = joi.object({
     produtos_nome: joi.array()
         .items(joi.string().required())
         .messages({
-            'string.base': 'O campo "Produto Nome" é obrigatório.',
-            'string.empty': 'O campo "Produto Nome" é obrigatório.',
+            'string.base': 'O campo "Produto Nome" deve conter apenas letras.',
+            'string.empty': 'O campo "Produto Nome" não pode estar vazio.',
             'array.includesRequiredUnknowns': 'O campo "Produto Nome" é obrigatório.'
         }),
     produtos_unidade: joi.array()
@@ -108,15 +108,15 @@ const schema = joi.object({
     produtos_quantidade: joi.array()
         .items(joi.number().required())
         .messages({
-            'number.base': 'O campo "Produto Quantidade" é obrigatório.',
-            'number.empty': 'O campo "Produto Quantidade" é obrigatório.',
+            'number.base': 'O campo "Produto Quantidade" deve conter apenas números.',
+            'number.empty': 'O campo "Produto Quantidade" não pode estar vazio.',
             'array.includesRequiredUnknowns': 'O campo "Produto Quantidade" é obrigatório.'
         }),
     produtos_preco: joi.array()
         .items(joi.number().required())
         .messages({
-            'number.base': 'O campo "Produto Preço" é obrigatório.',
-            'number.empty': 'O campo "Produto Preço" é obrigatório.',
+            'number.base': 'O campo "Produto Preço" deve conter apenas números.',
+            'number.empty': 'O campo "Produto Preço" não pode estar vazio.',
             'array.includesRequiredUnknowns': 'O campo "Produto Preço" é obrigatório.'
 
         }),

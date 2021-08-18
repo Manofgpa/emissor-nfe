@@ -576,22 +576,22 @@
               align="left"
               style="padding-bottom: 8px; vertical-align: middle"
             >
-              <%= locals.produtos[i][0].id %>
+              <%= locals.produtos[i].id %>
             </td>
-            <td align="left"><%= locals.produtos[i][0].name %></td>
+            <td align="left"><%= locals.produtos[i].name %></td>
             <td>96039000</td>
             <td>100</td>
             <td>5405</td>
-            <td><%= locals.produtos[i][0].unidade %></td>
-            <td><%= locals.produtos[i][0].quantidade %></td>
-            <td><%= locals.produtos[i][0].preco %></td>
+            <td><%= locals.produtos[i].unidade %></td>
+            <td><%= locals.produtos[i].quantidade %></td>
+            <td><%= locals.produtos[i].preco %></td>
             <td>
-              <%= (locals.produtos[i][0].quantidade *
-              locals.produtos[i][0].preco).toFixed(2) %>
+              <%= (locals.produtos[i].quantidade *
+              locals.produtos[i].preco).toFixed(2) %>
             </td>
             <td>
-              <%= (locals.produtos[i][0].quantidade *
-              locals.produtos[i][0].preco).toFixed(2) %>
+              <%= (locals.produtos[i].quantidade *
+              locals.produtos[i].preco).toFixed(2) %>
             </td>
             <td>0.00</td>
             <td>0.00</td>
