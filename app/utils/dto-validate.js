@@ -103,21 +103,24 @@ export default (data) => {
             .messages({
                 'string.base': 'O campo "Produto Nome" é obrigatório.',
                 'string.empty': 'O campo "Produto Nome" é obrigatório.',
-                'array.includesRequiredUnknowns': ''
+                'array.includesRequiredUnknowns': 'O campo "Produto Nome" é obrigatório.'
             }),
         produtos_unidade: joi.array()
-            .items(joi.string()),
+            .items(joi.string().allow('')),
         produtos_quantidade: joi.array()
             .items(joi.number().required())
             .messages({
                 'number.base': 'O campo "Produto Quantidade" é obrigatório.',
                 'number.empty': 'O campo "Produto Quantidade" é obrigatório.',
+                'array.includesRequiredUnknowns': 'O campo "Produto Quantidade" é obrigatório.'
             }),
         produtos_preco: joi.array()
             .items(joi.number().required())
             .messages({
                 'number.base': 'O campo "Produto Preço" é obrigatório.',
                 'number.empty': 'O campo "Produto Preço" é obrigatório.',
+                'array.includesRequiredUnknowns': 'O campo "Produto Preço" é obrigatório.'
+
             }),
         pagamento: joi.string(),
         valor_pagamento: joi.any().allow(''),

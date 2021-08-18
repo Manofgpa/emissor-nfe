@@ -57,7 +57,6 @@ const createNfe = (req, res) => {
     let produtos = []
     const productsIDs = createProductID(data.produtos_nome.length)
 
-
     data.produtos_nome.forEach((item, i) => {
         produtos[i] = [{
             id: productsIDs[i],
@@ -113,7 +112,6 @@ const createNfe = (req, res) => {
         }
 
         res.render('pages/generator', data)
-        // res.redirect('/emissor')
     }
     else {
         pdf.create(nfe, options).toBuffer((err, data) => {
