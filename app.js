@@ -21,5 +21,5 @@ app.use(express.urlencoded({ extended: true }))
 routes(app)
 
 app.listen(port, () => {
-    console.log("Servidor rodando na porta", port)
+    console.log("Servidor rodando na porta", process.env.PORT || port)
 })
