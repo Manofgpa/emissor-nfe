@@ -20,6 +20,6 @@ app.use(express.urlencoded({ extended: true }))
 // Routes
 routes(app)
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
     console.log("Servidor rodando na porta", process.env.PORT || port)
 })
