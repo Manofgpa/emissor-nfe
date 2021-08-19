@@ -151,7 +151,7 @@ label {
 
 .botao {
     padding: 5px;
-    background-color: #818283 !important;
+    background-color: #21654b !important;
     font-weight: bold !important;
 }
 
@@ -174,7 +174,7 @@ footer {
     text-align: center;
 }
 
-
-input, select {
+input,
+select {
     border-bottom: 1px solid #757575 !important;
 }

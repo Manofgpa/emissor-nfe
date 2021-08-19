@@ -6,21 +6,20 @@ import { DateTime } from 'luxon'
 import invoiceDateGenerator from '../utils/invoiceDateGenerator.js'
 
 
-const __dirname = path.resolve()
-
 const createNfe = (req, res) => {
 
     // Set dates
     const dt = DateTime.now().setLocale('br'),
         currentDate = dt.toLocaleString(),
-        currentHour = dt.toLocaleString(DateTime.TIME_WITH_SECONDS)
+        currentHour = dt.toLocaleString(DateTime.TIME_WITH_SECONDS),
+        numNf = Math.floor(100000 + Math.random() * 900000),
+        protocoloAutorizacao = Math.floor(100000000000000 + Math.random() * 900000000000000) + ` ${currentDate} ${currentHour}`,
+        __dirname = path.resolve()
 
     let totalNFPrice = 0,
         totalNFQuantity = 0,
-        data = req.body
-
-    const numNf = Math.floor(100000 + Math.random() * 900000),
-        protocoloAutorizacao = Math.floor(100000000000000 + Math.random() * 900000000000000) + ` ${currentDate} ${currentHour}`
+        data = req.body,
+        pdfOption
 
     // Get total NF price and quantity
     if (Array.isArray(data.produtos_preco)) {
@@ -47,10 +46,10 @@ const createNfe = (req, res) => {
         invoiceInstallment
     }
 
-    const html = fs.readFileSync(__dirname + '/app/views/pages/nfe.ejs', 'utf8')
-    const nfe = ejs.render(html, data)
+    const pdfHtml = fs.readFileSync(__dirname + '/app/views/pages/nfe.ejs', 'utf8')
+    const pdfNfe = ejs.render(pdfHtml, data)
 
-    let options = {
+    pdfOption = {
         "height": "11.25in",
         "width": "8.5in",
         "header": {
@@ -61,7 +60,7 @@ const createNfe = (req, res) => {
         }
     }
 
-    pdf.create(nfe, options).toBuffer((err, data) => {
+    pdf.create(pdfNfe, pdfOption).toBuffer((err, data) => {
         if (err) {
             res.send(err)
         } else {

@@ -21,12 +21,11 @@ const schema = joi.object({
         }),
     cliente_cpf: joi.string()
         .required()
-        .pattern(new RegExp(/^[0-9.-]*$/))
         .messages({
-            'string.pattern.base': 'O campo "CPF" deve conter apenas números e espaço.',
-            'string.empty': 'O campo "CPF" é obrigatório.',
-            'string.required': 'O campo "CPF" é obrigatório.',
-            'string.base': 'O campo "CPF" deve conter apenas números.'
+            'string.pattern.base': 'O campo "CPF / CNPJ" deve conter apenas números e espaço.',
+            'string.empty': 'O campo "CPF / CNPJ" é obrigatório.',
+            'string.required': 'O campo "CPF / CNPJ" é obrigatório.',
+            'string.base': 'O campo "CPF / CNPJ" deve conter apenas números.'
         }),
     cliente_ie: joi.any().allow(''),
     consumidor_final: joi.number().allow('')

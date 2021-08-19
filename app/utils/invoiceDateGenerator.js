@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon'
 
+
 const currentDate = DateTime.now().setLocale('br')
 
 export default (payment) => {
@@ -15,7 +16,6 @@ export default (payment) => {
     for (let i = 1; i <= payment; i++) {
         invoiceDueDates = [...invoiceDueDates, generateDates(i)]
     }
-
 
     return invoiceDueDates
 
