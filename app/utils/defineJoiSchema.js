@@ -21,6 +21,8 @@ const schema = joi.object({
         }),
     cliente_cpf: joi.string()
         .required()
+        .min(14)
+        .max(18)
         .messages({
             'string.pattern.base': 'O campo "CPF / CNPJ" deve conter apenas números e espaço.',
             'string.empty': 'O campo "CPF / CNPJ" é obrigatório.',
